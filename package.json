@@ -27,7 +27,6 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "yarn@3.4.1",
   "dependencies": {
     "@gluestack-style/react": "^1.0.15",
     "@gluestack-ui/config": "^1.0.3",
