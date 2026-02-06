@@ -1,4 +1,4 @@
-import { SimpleFormScreen } from '@tickety/app/features/simple-form/screen'
+import { SimpleCardsScreen } from '@tickety/app/features/simple-cards/screen'
 import { Stack } from 'expo-router'
 
 export default function Screen() {
@@ -6,10 +6,10 @@ export default function Screen() {
         <>
             <Stack.Screen
                 options={{
-                    title: 'Gluestack Form',
+                    title: 'Gluestack Cards',
                 }}
             />
-            <SimpleFormScreen />
+            <SimpleCardsScreen />
         </>
     )
 }
