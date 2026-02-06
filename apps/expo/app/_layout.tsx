@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router'
-import { Provider } from 'app/provider'
+import { Provider } from '@tickety/app/provider'
 import { StatusBar } from 'expo-status-bar'
 
 export default function App() {

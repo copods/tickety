@@ -1,6 +1,6 @@
 import 'raf/polyfill'
 
-import { Provider } from 'app/provider'
+import { Provider } from '@tickety/app/provider'
 import Head from 'next/head'
 import React from 'react'
 import type { SolitoAppProps } from 'solito'

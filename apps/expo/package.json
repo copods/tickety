@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "app": "*",
+    "@tickety/app": "*",
     "expo": "^49.0.0",
     "expo-linear-gradient": "~12.3.0",
     "expo-linking": "~5.0.2",

@@ -1,4 +1,4 @@
-import { SimpleFormScreen } from 'app/features/simple-form/screen'
+import { SimpleFormScreen } from '@tickety/app/features/simple-form/screen'
 import { Stack } from 'expo-router'
 
 export default function Screen() {

@@ -1,4 +1,4 @@
-import { SimpleFormScreen } from 'app/features/simple-form/screen'
+import { SimpleFormScreen } from '@tickety/app/features/simple-form/screen'
 import Head from 'next/head'
 
 export default function Page() {
