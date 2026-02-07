@@ -9,16 +9,9 @@ import {
 } from "react-native";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 
-export interface Artist {
-  id: string;
-  name: string;
-  image: string;
-}
+import type { Artist, ArtistCarouselProps } from "../../types";
 
-interface ArtistCarouselProps {
-  artists: Artist[];
-  onArtistPress?: (artist: Artist) => void;
-}
+export type { Artist };
 
 export const ArtistCarousel = ({
   artists,
@@ -67,7 +60,7 @@ export const ArtistCarousel = ({
       maxWidth={1440}
     >
       <HStack justifyContent="space-between" alignItems="center">
-        <Text fontSize="$4xl" color="$black" fontWeight="$bold">
+        <Text fontSize="$3xl" color="$black" fontWeight="$bold">
           Artists in your District
         </Text>
 

@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/events/category/[category]": "pages/events/category/[category].js",
   "/api/events": "pages/api/events.js",
-  "/events": "pages/events.js",
-  "/api/artists": "pages/api/artists.js"
+  "/events": "pages/events.js"
 }

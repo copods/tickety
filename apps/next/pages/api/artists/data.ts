@@ -1,11 +1,4 @@
-import type { Artist } from "@tickety/app/components/composite";
-
-export interface ArtistDetail extends Artist {
-  genre: string;
-  bio: string;
-  followers: string;
-  upcomingShows: number;
-}
+import type { ArtistDetail } from "@tickety/app/types";
 
 export const mockArtists: ArtistDetail[] = [
   {
@@ -42,7 +35,7 @@ export const mockArtists: ArtistDetail[] = [
     id: "4",
     name: "Nucleya",
     image:
-      "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&q=80&w=400",
+      "https://images.unsplash.com/photo-1559386484-97dfc0e15539?auto=format&fit=crop&q=80&w=400",
     genre: "EDM / Bass",
     bio: "Nucleya is India's leading bass music producer and DJ, blending Indian folk sounds with heavy electronic beats.",
     followers: "4.7M",
