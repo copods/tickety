@@ -11,21 +11,9 @@ import {
 } from "react-native";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 
-export interface CarouselEvent {
-  id: string;
-  name: string;
-  date: string;
-  time: string;
-  venue: string;
-  price: string;
-  image: string;
-  bannerImage: string;
-}
+import type { CarouselEvent, EventCarouselProps } from "../../types";
 
-interface EventCarouselProps {
-  data: CarouselEvent[];
-  onEventPress?: (event: CarouselEvent) => void;
-}
+export type { CarouselEvent };
 
 export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);

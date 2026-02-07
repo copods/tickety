@@ -2,11 +2,19 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   EventCarousel,
-  CarouselEvent,
   ArtistCarousel,
-  Artist,
+  EventCategories,
 } from "@tickety/app/components/composite";
-import { fetchEvents, fetchArtists } from "@tickety/app/services/api";
+import type {
+  CarouselEvent,
+  Artist,
+  EventCategory,
+} from "@tickety/app/types";
+import {
+  fetchEvents,
+  fetchArtists,
+  fetchCategories,
+} from "@tickety/app/services/api";
 import { Box } from "@tickety/app/components/ui/box";
 import { Text } from "@tickety/app/components/ui";
 import Head from "next/head";
@@ -15,14 +23,16 @@ export default function Events() {
   const router = useRouter();
   const [events, setEvents] = useState<CarouselEvent[]>([]);
   const [artists, setArtists] = useState<Artist[]>([]);
+  const [categories, setCategories] = useState<EventCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    Promise.all([fetchEvents(), fetchArtists()])
-      .then(([eventsData, artistsData]) => {
+    Promise.all([fetchEvents(), fetchArtists(), fetchCategories()])
+      .then(([eventsData, artistsData, categoriesData]) => {
         setEvents(eventsData);
         setArtists(artistsData);
+        setCategories(categoriesData);
         setLoading(false);
       })
       .catch((err) => {
@@ -60,18 +70,20 @@ export default function Events() {
             <Text color="$red500">{error}</Text>
           </Box>
         ) : (
-          <Box gap="$20">
+          <Box gap="$16">
             <EventCarousel
-              data={events}
-              onEventPress={(event) =>
-                router.push(`/events/${event.id}`)
+              data={events.slice(0, 5)}
+              onEventPress={(event) => router.push(`/events/${event.id}`)}
+            />
+            <EventCategories
+              categories={categories}
+              onCategoryPress={(category) =>
+                router.push(`/events/category/${encodeURIComponent(category.name)}`)
               }
             />
             <ArtistCarousel
               artists={artists}
-              onArtistPress={(artist) =>
-                router.push(`/artists/${artist.id}`)
-              }
+              onArtistPress={(artist) => router.push(`/artists/${artist.id}`)}
             />
             <div></div>
           </Box>

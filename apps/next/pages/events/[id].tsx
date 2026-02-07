@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Box, VStack, HStack, Text } from "@tickety/app/components/ui";
-import { fetchEventById, EventDetail } from "@tickety/app/services/api";
+import { fetchEventById } from "@tickety/app/services/api";
+import type { EventDetail } from "@tickety/app/types";
 import { Button, ButtonText } from "@tickety/app/components/ui";
 import { Image, Pressable, Platform, StyleSheet } from "react-native";
 import { ChevronLeft } from "lucide-react-native";
