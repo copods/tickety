@@ -1,5 +1,5 @@
 // import SplashScreen from '@gluestack/app/Login/SplashScreen'
-import Page from "./form"
+import Page from "./page-event"
 const Screen = () => {
   return <Page />
 }
