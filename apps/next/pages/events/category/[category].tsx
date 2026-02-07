@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import { EventCarousel, CategoryEventsSkeleton } from "@tickety/app/components/composite";
 import type { EventDetail } from "@tickety/app/types";
 import { fetchEventsByCategory } from "@tickety/app/services/api";

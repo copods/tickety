@@ -76,12 +76,6 @@ export default function Events() {
             <EventCategoriesSkeleton />
             <ArtistCarouselSkeleton />
           </Box>
-        ) : loading ? (
-          <Box gap="$16">
-            <EventCarouselSkeleton />
-            <EventCategoriesSkeleton />
-            <ArtistCarouselSkeleton />
-          </Box>
         ) : (
           <Box gap="$0">
             <Navbar />
@@ -107,7 +101,7 @@ export default function Events() {
             </Box>
             <Footer />
           </Box>
-        )}
+        )}  
       </Box>
     </>
   );
