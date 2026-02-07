@@ -28,6 +28,7 @@ const config = createConfig({
       primary900: "#441e7d",
       primary950: "#441E7D",
       overlay: "rgba(0,0,0,0.3)",
+      goldVarient: "#8b8123",
 
       secondary0: "#FCFCFC",
       secondary50: "#f9fafb",
