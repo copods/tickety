@@ -110,76 +110,78 @@ export default function CategoryPage() {
               <Heading size="2xl" fontWeight="$bold">
                 All {categoryName} Events
               </Heading>
-              <VStack flexDirection="row" flexWrap="wrap" space="lg">
+              <HStack flexWrap="wrap" space="lg" justifyContent="flex-start">
                 {events.map((event) => (
-                  <Pressable
+                  <Box
                     key={event.id}
-                    onPress={() => router.push(`/events/${event.id}`)}
-                    style={({ pressed }) => ({
-                      opacity: pressed ? 0.85 : 1,
-                      cursor: isWeb ? "pointer" : "default",
-                    })}
+                    width={
+                      isMobile
+                        ? "100%" // 1 per row on mobile
+                        : "24%" // 4 per row on web
+                    }
+                    minHeight={isMobile ? 340 : 420}
+                    borderWidth={1}
+                    borderColor="$borderLight200"
+                    borderRadius="$xl"
+                    overflow="hidden"
                   >
-                    <HStack
-                      space="md"
-                      borderRadius="$xl"
-                      overflow="hidden"
-                      borderWidth={1}
-                      borderColor="$borderLight200"
-                      flexDirection="column"
-                      padding="$4"
+                    <Pressable
+                      onPress={() => router.push(`/events/${event.id}`)}
+                      style={({ pressed }) => ({
+                        opacity: pressed ? 0.85 : 1,
+                        cursor: isWeb ? "pointer" : "default",
+                      })}
                     >
-                      {/* Event Image */}
-                      <Box
-                        width={isMobile ? 120 : 200}
-                        height={isMobile ? 140 : 160}
-                      >
-                        <Image
-                          source={{ uri: event.image }}
-                          style={{ width: "100%", height: "100%" }}
-                          resizeMode="cover"
-                        />
-                      </Box>
+                      <VStack overflow="hidden" height="100%">
+                        {/* Event Image */}
+                        <Box width="100%" height={isMobile ? 360 : 380}>
+                          <Image
+                            source={{ uri: event.image }}
+                            style={{ width: "100%", height: "100%" }}
+                            resizeMode="cover"
+                          />
+                        </Box>
 
-                      {/* Event Info */}
-                      <VStack
-                        flex={1}
-                        py="$3"
-                        pr="$4"
-                        justifyContent="center"
-                        space="xs"
-                      >
-                        <Text
-                          fontSize="$xs"
-                          fontWeight="$semibold"
-                          color="$text500"
-                          textTransform="uppercase"
-                          letterSpacing={0.5}
-                        >
-                          {event.date} • {event.time}
-                        </Text>
-                        <Text
-                          fontSize={isMobile ? "$md" : "$lg"}
-                          fontWeight="$bold"
-                          numberOfLines={2}
-                        >
-                          {event.name}
-                        </Text>
-                        <Text fontSize="$sm" color="$text500" numberOfLines={1}>
-                          {event.venue}
-                        </Text>
-                        <Text
-                          fontSize="$md"
-                          fontWeight="$semibold"
-                          color="$black"
-                        >
-                          {event.price}
-                        </Text>
+                        {/* Event Info */}
+                        <VStack p="$3" space="xs">
+                          <Text
+                            fontSize="$xs"
+                            fontWeight="$semibold"
+                            color="$goldVarient"
+                            letterSpacing={0.5}
+                          >
+                            {event.date} • {event.time}
+                          </Text>
+
+                          <Text
+                            fontSize={isMobile ? "$md" : "$md"}
+                            fontWeight="$bold"
+                            numberOfLines={2}
+                          >
+                            {event.name}
+                          </Text>
+
+                          <Text
+                            fontSize="$xs"
+                            numberOfLines={1}
+                            color="$warmgray"
+                          >
+                            {event.venue}
+                          </Text>
+
+                          <Text
+                            fontSize="$xs"
+                            fontWeight="$semibold"
+                            color="$warmgray"
+                          >
+                            {event.price}
+                          </Text>
+                        </VStack>
                       </VStack>
-                    </HStack>
-                  </Pressable>
+                    </Pressable>
+                  </Box>
                 ))}
-              </VStack>
+              </HStack>
             </Box>
           )}
         </Box>
