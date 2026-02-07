@@ -1,7 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import type { CarouselEvent } from "@tickety/app/components/composite";
 
-const mockEvents: CarouselEvent[] = [
+export interface EventDetail extends CarouselEvent {
+  description: string;
+  category: string;
+  organizer: string;
+  ageRestriction: string;
+}
+
+export const mockEvents: EventDetail[] = [
   {
     id: "1",
     name: "Heritage India Tour | Dr. Satinder Sartaaj Live In Delhi",
@@ -13,6 +19,11 @@ const mockEvents: CarouselEvent[] = [
       "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
       "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Experience the mesmerizing voice of Dr. Satinder Sartaaj live as he takes you on a Heritage India Tour. An evening filled with soulful Sufi music, poetry, and a celebration of Indian heritage.",
+    category: "Music",
+    organizer: "Heritage India Events",
+    ageRestriction: "All Ages",
   },
   {
     id: "2",
@@ -25,6 +36,11 @@ const mockEvents: CarouselEvent[] = [
       "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
       "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Sunburn Arena presents the internationally acclaimed DJ and producer Alan Walker live in Delhi. Get ready for an electrifying evening of EDM with hits like Faded, Alone, and Darkside.",
+    category: "EDM / Festival",
+    organizer: "Sunburn",
+    ageRestriction: "16+",
   },
   {
     id: "3",
@@ -37,6 +53,11 @@ const mockEvents: CarouselEvent[] = [
       "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
       "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "India's greatest pop culture event is back! Comic Con India 2026 Delhi Edition features celebrity panels, cosplay contests, exclusive merchandise, gaming zones, and much more.",
+    category: "Entertainment",
+    organizer: "Comic Con India",
+    ageRestriction: "All Ages",
   },
   {
     id: "4",
@@ -49,17 +70,10 @@ const mockEvents: CarouselEvent[] = [
       "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
       "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "A grand celebration of Bollywood music featuring top playback singers and live orchestras performing your favourite hits from classic to contemporary Bollywood.",
+    category: "Music",
+    organizer: "Bollywood Live Entertainment",
+    ageRestriction: "All Ages",
   },
 ];
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<CarouselEvent[]>
-) {
-  if (req.method !== "GET") {
-    res.setHeader("Allow", ["GET"]);
-    return res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-
-  res.status(200).json(mockEvents);
-}

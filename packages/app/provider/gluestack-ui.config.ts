@@ -5,6 +5,12 @@ const config = createConfig({
   ...defaultConfig,
   tokens: {
     ...defaultConfig.tokens,
+    fonts: {
+      ...defaultConfig.tokens.fonts,
+      heading: 'Plus Jakarta Sans',
+      body: 'Plus Jakarta Sans',
+      mono: 'monospace',
+    },
     colors: {
       ...defaultConfig.tokens.colors,
       white: '#FFFFFF',

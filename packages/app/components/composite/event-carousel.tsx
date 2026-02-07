@@ -24,9 +24,10 @@ export interface CarouselEvent {
 
 interface EventCarouselProps {
   data: CarouselEvent[];
+  onEventPress?: (event: CarouselEvent) => void;
 }
 
-export const EventCarousel = ({ data }: EventCarouselProps) => {
+export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -282,7 +283,7 @@ export const EventCarousel = ({ data }: EventCarouselProps) => {
                     bg="$black"
                     action="primary"
                     borderRadius="$full"
-                    onPress={() => console.log("Booking tickets...")}
+                    onPress={() => onEventPress?.(activeEvent)}
                     width={180}
                     height={48}
                     {...(useNativeShadow && {
@@ -367,7 +368,7 @@ export const EventCarousel = ({ data }: EventCarouselProps) => {
                     bg="$black"
                     action="primary"
                     borderRadius="$full"
-                    onPress={() => console.log("Booking tickets...")}
+                    onPress={() => onEventPress?.(activeEvent)}
                     width={isTablet ? 180 : 200}
                     height={isTablet ? 48 : 52}
                     {...(useNativeShadow && {
