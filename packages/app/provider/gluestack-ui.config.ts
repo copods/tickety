@@ -134,6 +134,14 @@ const config = createConfig({
       info700: '#5B21B6',
       info800: '#4C1D95',
       info900: '#441e7d',
+
+      // Carousel specific colors
+      carouselOverlay: 'rgba(255, 255, 255, 0.45)',
+      carouselBorder: 'rgba(255, 255, 255, 0.8)',
+      carouselNavBg: 'rgba(0, 0, 0, 0.75)',
+      carouselNavBgPressed: 'rgba(0, 0, 0, 0.95)',
+      carouselIndicatorInactive: 'rgba(0, 0, 0, 0.2)',
+      carouselShadow: '#000000',
     },
     space: {
       ...defaultConfig.tokens.space,
