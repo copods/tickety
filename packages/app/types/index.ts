@@ -15,10 +15,7 @@ export interface EventDetail extends CarouselEvent {
   category: string;
   organizer: string;
   ageRestriction: string;
-<<<<<<< HEAD
   artistId?: string;
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 }
 
 export interface EventCategory {
@@ -41,7 +38,6 @@ export interface ArtistDetail extends Artist {
   upcomingShows: number;
 }
 
-<<<<<<< HEAD
 // ── Filter & Pagination Types ────────────────────────────────
 export type SortByOption =
   | "popularity"
@@ -63,8 +59,6 @@ export interface PaginatedEventsResponse {
   hasMore: boolean;
 }
 
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 // ── Component Props ──────────────────────────────────────────
 export interface EventCarouselProps {
   data: CarouselEvent[];
@@ -80,7 +74,6 @@ export interface EventCategoriesProps {
   categories: EventCategory[];
   onCategoryPress?: (category: EventCategory) => void;
 }
-<<<<<<< HEAD
 
 export interface AllEventsProps {
   genres: string[];
@@ -95,5 +88,3 @@ export interface FilterModalProps {
   currentFilters: EventFilters;
   useDarkTheme: boolean;
 }
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
