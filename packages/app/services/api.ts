@@ -63,7 +63,6 @@ export async function fetchEventsByCategory(
   return res.json();
 }
 
-
 export async function fetchEventsByArtist(
   artistId: string
 ): Promise<EventDetail[]> {

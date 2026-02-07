@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, HStack, Text, Heading } from "../ui";
+import { Box, Text, Heading } from "../ui";
 import {
   Pressable,
   ScrollView,
@@ -24,6 +24,7 @@ import {
   Mic,
 } from "lucide-react-native";
 import type { LucideIcon } from "lucide-react-native";
+
 import type { EventCategory, EventCategoriesProps } from "../../types";
 
 export type { EventCategory };
@@ -75,6 +76,7 @@ export const EventCategories = ({
   }, []);
 
   const isMobile = isMounted ? width < 768 : false;
+
 
   if (!categories?.length) return null;
 
@@ -179,6 +181,7 @@ export const EventCategories = ({
       </Pressable>
     );
   };
+
   const [row1, row2] = splitIntoTwoRows(categories);
 
   return (
