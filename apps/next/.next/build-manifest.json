@@ -26,24 +26,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
-<<<<<<< HEAD
-=======
-    ],
-    "/artists/[id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/artists/[id].js"
-    ],
-    "/events": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/events.js"
-    ],
-    "/events/category/[category]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/events/category/[category].js"
->>>>>>> 498d37d (skelton-added)
     ]
   },
   "ampFirstPages": []
