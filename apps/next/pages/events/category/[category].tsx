@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
+
 import { EventCarousel, CategoryEventsSkeleton } from "@tickety/app/components/composite";
-=======
-import { EventCarousel } from "@tickety/app/components/composite";
->>>>>>> ead0c7c (Added event categories carousle and detail page)
+
 import type { EventDetail } from "@tickety/app/types";
 import { fetchEventsByCategory } from "@tickety/app/services/api";
 import { Box, VStack, HStack, Text, Heading } from "@tickety/app/components/ui";
@@ -47,21 +45,7 @@ export default function CategoryPage() {
   const categoryName = typeof category === "string" ? category : "";
 
   if (loading) {
-<<<<<<< HEAD
     return <CategoryEventsSkeleton />;
-=======
-    return (
-      <Box
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-        height={400}
-        backgroundColor="$white"
-      >
-        <Text color="$text500">Loading {categoryName} events...</Text>
-      </Box>
-    );
->>>>>>> ead0c7c (Added event categories carousle and detail page)
   }
 
   if (error) {
@@ -72,14 +56,9 @@ export default function CategoryPage() {
         alignItems="center"
         height={400}
         backgroundColor="$white"
-<<<<<<< HEAD
         accessibilityRole="alert"
       >
         <Text color="$red500" accessibilityRole="alert">{error}</Text>
-=======
-      >
-        <Text color="$red500">{error}</Text>
->>>>>>> ead0c7c (Added event categories carousle and detail page)
       </Box>
     );
   }
@@ -124,7 +103,6 @@ export default function CategoryPage() {
               <Heading size="2xl" fontWeight="$bold">
                 All {categoryName} Events
               </Heading>
-<<<<<<< HEAD
               <HStack flexWrap="wrap" space="lg" justifyContent="flex-start">
                 {events.map((event) => (
                   <Box
@@ -200,78 +178,6 @@ export default function CategoryPage() {
                   </Box>
                 ))}
               </HStack>
-=======
-              <VStack flexDirection="row" flexWrap="wrap" space="lg">
-                {events.map((event) => (
-                  <Pressable
-                    key={event.id}
-                    onPress={() => router.push(`/events/${event.id}`)}
-                    style={({ pressed }) => ({
-                      opacity: pressed ? 0.85 : 1,
-                      cursor: isWeb ? "pointer" : "default",
-                    })}
-                  >
-                    <HStack
-                      space="md"
-                      borderRadius="$xl"
-                      overflow="hidden"
-                      borderWidth={1}
-                      borderColor="$borderLight200"
-                      flexDirection="column"
-                      padding="$4"
-                    >
-                      {/* Event Image */}
-                      <Box
-                        width={isMobile ? 120 : 200}
-                        height={isMobile ? 140 : 160}
-                      >
-                        <Image
-                          source={{ uri: event.image }}
-                          style={{ width: "100%", height: "100%" }}
-                          resizeMode="cover"
-                        />
-                      </Box>
-
-                      {/* Event Info */}
-                      <VStack
-                        flex={1}
-                        py="$3"
-                        pr="$4"
-                        justifyContent="center"
-                        space="xs"
-                      >
-                        <Text
-                          fontSize="$xs"
-                          fontWeight="$semibold"
-                          color="$text500"
-                          textTransform="uppercase"
-                          letterSpacing={0.5}
-                        >
-                          {event.date} • {event.time}
-                        </Text>
-                        <Text
-                          fontSize={isMobile ? "$md" : "$lg"}
-                          fontWeight="$bold"
-                          numberOfLines={2}
-                        >
-                          {event.name}
-                        </Text>
-                        <Text fontSize="$sm" color="$text500" numberOfLines={1}>
-                          {event.venue}
-                        </Text>
-                        <Text
-                          fontSize="$md"
-                          fontWeight="$semibold"
-                          color="$black"
-                        >
-                          {event.price}
-                        </Text>
-                      </VStack>
-                    </HStack>
-                  </Pressable>
-                ))}
-              </VStack>
->>>>>>> ead0c7c (Added event categories carousle and detail page)
             </Box>
           )}
         </Box>
