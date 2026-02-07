@@ -1,5 +1,8 @@
 import type { ArtistDetail } from "@tickety/app/types";
+<<<<<<< HEAD
 export type { ArtistDetail } from "@tickety/app/types";
+=======
+>>>>>>> ead0c7c (Added event categories carousle and detail page)
 
 export const mockArtists: ArtistDetail[] = [
   {

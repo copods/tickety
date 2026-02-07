@@ -4,12 +4,15 @@ import {
   EventCarousel,
   ArtistCarousel,
   EventCategories,
+<<<<<<< HEAD
   AllEvents,
   EventCarouselSkeleton,
   ArtistCarouselSkeleton,
   EventCategoriesSkeleton,
   Navbar,
   Footer,
+=======
+>>>>>>> ead0c7c (Added event categories carousle and detail page)
 } from "@tickety/app/components/composite";
 import type {
   CarouselEvent,
@@ -77,6 +80,7 @@ export default function Events() {
             <ArtistCarouselSkeleton />
           </Box>
         ) : (
+<<<<<<< HEAD
           <Box>
             <Navbar />
             <Box gap="$16">
@@ -100,6 +104,24 @@ export default function Events() {
               />
             </Box>
             <Footer />
+=======
+          <Box gap="$16">
+            <EventCarousel
+              data={events.slice(0, 5)}
+              onEventPress={(event) => router.push(`/events/${event.id}`)}
+            />
+            <EventCategories
+              categories={categories}
+              onCategoryPress={(category) =>
+                router.push(`/events/category/${encodeURIComponent(category.name)}`)
+              }
+            />
+            <ArtistCarousel
+              artists={artists}
+              onArtistPress={(artist) => router.push(`/artists/${artist.id}`)}
+            />
+            <div></div>
+>>>>>>> ead0c7c (Added event categories carousle and detail page)
           </Box>
         )}
       </Box>
