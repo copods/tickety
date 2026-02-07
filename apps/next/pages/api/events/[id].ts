@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { mockEvents, EventDetail } from "./data";
+import type { EventDetail } from "@tickety/app/types";
+import { mockEvents } from "./data";
 
 export default function handler(
   req: NextApiRequest,
