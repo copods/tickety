@@ -21,11 +21,14 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
+<<<<<<< HEAD
     ],
     "/events": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/events.js"
+=======
+>>>>>>> 15cf7bb (added explored events, all events and navigation component)
     ]
   },
   "ampFirstPages": []
