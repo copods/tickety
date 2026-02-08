@@ -143,6 +143,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
       height={carouselHeight}
       overflow="hidden"
       backgroundColor="$white"
+      accessibilityRole="summary"
+      accessibilityLabel={`Event carousel, showing ${activeEvent.name}, slide ${activeIndex + 1} of ${data.length}`}
     >
       {/* Background Layer (Blurred Banner) - Full Width */}
       <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
@@ -151,6 +153,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
           style={StyleSheet.absoluteFill}
           resizeMode="cover"
           blurRadius={blurIntensity}
+          accessibilityLabel=""
+          accessible={false}
         />
         {/* Soft overlay */}
         <Box
@@ -217,6 +221,7 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
                   source={{ uri: activeEvent.image }}
                   style={{ width: "100%", height: "100%" }}
                   resizeMode="cover"
+                  accessibilityLabel={`Poster for ${activeEvent.name}`}
                 />
               </Box>
 
@@ -272,6 +277,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
                     action="primary"
                     borderRadius="$full"
                     onPress={() => onEventPress?.(activeEvent)}
+                    accessibilityRole="button"
+                    accessibilityLabel={`Book tickets for ${activeEvent.name}`}
                     width={180}
                     height={48}
                     {...(useNativeShadow && {
@@ -357,6 +364,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
                     action="primary"
                     borderRadius="$full"
                     onPress={() => onEventPress?.(activeEvent)}
+                    accessibilityRole="button"
+                    accessibilityLabel={`Book tickets for ${activeEvent.name}`}
                     width={isTablet ? 180 : 200}
                     height={isTablet ? 48 : 52}
                     {...(useNativeShadow && {
@@ -398,6 +407,7 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
                   source={{ uri: activeEvent.image }}
                   style={{ width: "100%", height: "100%" }}
                   resizeMode="cover"
+                  accessibilityLabel={`Poster for ${activeEvent.name}`}
                 />
               </Box>
             </HStack>
@@ -417,6 +427,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
               <Pressable
                 onPress={prevSlide}
                 disabled={isAnimating}
+                accessibilityRole="button"
+                accessibilityLabel="Previous slide"
                 style={({ pressed }) => ({
                   backgroundColor: pressed
                     ? "rgba(0,0,0,0.95)" // carouselNavBgPressed
@@ -452,6 +464,8 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
               <Pressable
                 onPress={nextSlide}
                 disabled={isAnimating}
+                accessibilityRole="button"
+                accessibilityLabel="Next slide"
                 style={({ pressed }) => ({
                   backgroundColor: pressed
                     ? "rgba(0,0,0,0.95)" // carouselNavBgPressed
@@ -493,6 +507,9 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
               key={index}
               onPress={() => goToSlide(index)}
               disabled={isAnimating}
+              accessibilityRole="button"
+              accessibilityLabel={`Go to slide ${index + 1} of ${data.length}`}
+              accessibilityState={{ selected: index === activeIndex }}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.7 : 1,
                 cursor: isWeb ? "pointer" : "default",

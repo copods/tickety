@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Box, VStack, HStack, Text } from "../ui";
+import { Box, VStack, HStack, Text, Heading } from "../ui";
 import {
   Image,
   Pressable,
@@ -58,17 +58,22 @@ export const ArtistCarousel = ({
       width="100%"
       overflow="hidden"
       maxWidth={1440}
+      accessibilityRole="summary"
+      accessibilityLabel="Artists in your District"
     >
       <HStack justifyContent="space-between" alignItems="center">
-        <Text fontSize="$3xl" color="$black" fontWeight="$bold">
+        <Heading fontSize="$3xl" color="$black" fontWeight="$bold">
           Artists in your District
-        </Text>
+        </Heading>
 
         {!isMobile && (
           <HStack space="sm">
             <Pressable
               onPress={scrollLeft}
               disabled={!canScrollLeft}
+              accessibilityRole="button"
+              accessibilityLabel="Scroll artists left"
+              accessibilityState={{ disabled: !canScrollLeft }}
               style={({ pressed }) => ({
                 backgroundColor: pressed
                   ? "rgba(0,0,0,0.95)"
@@ -88,6 +93,9 @@ export const ArtistCarousel = ({
             <Pressable
               onPress={scrollRight}
               disabled={!canScrollRight}
+              accessibilityRole="button"
+              accessibilityLabel="Scroll artists right"
+              accessibilityState={{ disabled: !canScrollRight }}
               style={({ pressed }) => ({
                 backgroundColor: pressed
                   ? "rgba(0,0,0,0.95)"
@@ -117,12 +125,16 @@ export const ArtistCarousel = ({
           scrollEventThrottle={16}
           onContentSizeChange={(w) => setContentWidth(w)}
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+          accessibilityRole="list"
+          accessibilityLabel="Artists list"
         >
           <HStack space="lg" gap={isMobile ? "$2" : "$6"}>
             {artists.map((artist) => (
               <Pressable
                 key={artist.id}
                 onPress={() => onArtistPress?.(artist)}
+                accessibilityRole="button"
+                accessibilityLabel={`View artist ${artist.name}`}
                 style={({ pressed }) => ({
                   opacity: pressed ? 0.7 : 1,
                   cursor: isWeb ? "pointer" : "default",
@@ -140,6 +152,7 @@ export const ArtistCarousel = ({
                       source={{ uri: artist.image }}
                       style={{ width: "100%", height: "100%" }}
                       resizeMode="cover"
+                      accessibilityLabel={`Photo of ${artist.name}`}
                     />
                   </Box>
 

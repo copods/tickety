@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import {
-  Box,
-  VStack,
-  HStack,
-  Text,
-  Heading,
-} from "@tickety/app/components/ui";
+import { Box, VStack, HStack, Text, Heading } from "@tickety/app/components/ui";
 import {
   fetchArtistById,
   fetchEventsByArtist,
@@ -63,8 +57,9 @@ export default function ArtistPage() {
         alignItems="center"
         height={400}
         backgroundColor="$white"
+        accessibilityRole="alert"
       >
-        <Text color="$red500">{error || "Artist not found"}</Text>
+        <Text color="$red500" accessibilityRole="alert">{error || "Artist not found"}</Text>
       </Box>
     );
   }
@@ -76,25 +71,6 @@ export default function ArtistPage() {
         <meta name="description" content={artist.bio} />
       </Head>
       <Box backgroundColor="$white" minHeight="$full">
-        {/* Back button */}
-        <Box px={isMobile ? "$5" : "$20"} pt={isMobile ? "$4" : "$8"}>
-          <Pressable
-            onPress={() => router.back()}
-            style={({ pressed }) => ({
-              flexDirection: "row",
-              alignItems: "center",
-              opacity: pressed ? 0.7 : 1,
-              cursor: isWeb ? "pointer" : "default",
-              alignSelf: "flex-start",
-            })}
-          >
-            <ChevronLeft size={20} color="#000" strokeWidth={2} />
-            <Text fontSize="$sm" fontWeight="$medium" ml="$1">
-              Back
-            </Text>
-          </Pressable>
-        </Box>
-
         {/* ── First Fold: Artist Info ── */}
         <Box
           px={isMobile ? "$5" : "$20"}
@@ -118,6 +94,7 @@ export default function ArtistPage() {
                   source={{ uri: artist.image }}
                   style={{ width: "100%", height: "100%" }}
                   resizeMode="cover"
+                  accessibilityLabel={`Photo of ${artist.name}`}
                 />
               </Box>
 
@@ -151,16 +128,7 @@ export default function ArtistPage() {
                 </HStack>
 
                 {/* Bio */}
-                <Box
-                  px="$4"
-                  py="$4"
-                  mt="$2"
-                  backgroundColor="$backgroundLight100"
-                  borderRadius="$xl"
-                >
-                  <Text fontSize="$xs" fontWeight="$bold" mb="$1">
-                    About
-                  </Text>
+                <Box>
                   <Text fontSize="$sm" color="$text700" lineHeight={22}>
                     {artist.bio}
                   </Text>
@@ -181,6 +149,7 @@ export default function ArtistPage() {
                   source={{ uri: artist.image }}
                   style={{ width: "100%", height: "100%" }}
                   resizeMode="cover"
+                  accessibilityLabel={`Photo of ${artist.name}`}
                 />
               </Box>
 
@@ -216,15 +185,7 @@ export default function ArtistPage() {
                 </HStack>
 
                 {/* Bio */}
-                <Box
-                  px="$5"
-                  py="$5"
-                  backgroundColor="$backgroundLight100"
-                  borderRadius="$xl"
-                >
-                  <Text fontSize="$sm" fontWeight="$bold" mb="$1.5">
-                    About
-                  </Text>
+                <Box>
                   <Text fontSize="$sm" color="$text700" lineHeight={22}>
                     {artist.bio}
                   </Text>
@@ -261,6 +222,8 @@ export default function ArtistPage() {
                 >
                   <Pressable
                     onPress={() => router.push(`/events/${event.id}`)}
+                    accessibilityRole="link"
+                    accessibilityLabel={`${event.name}, ${event.date} at ${event.venue}, ${event.price}`}
                     style={({ pressed }) => ({
                       opacity: pressed ? 0.85 : 1,
                       cursor: isWeb ? "pointer" : "default",
@@ -273,6 +236,7 @@ export default function ArtistPage() {
                           source={{ uri: event.image }}
                           style={{ width: "100%", height: "100%" }}
                           resizeMode="cover"
+                          accessibilityLabel={`${event.name} event poster`}
                         />
                       </Box>
 

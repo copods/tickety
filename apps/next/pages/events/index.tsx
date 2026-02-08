@@ -54,15 +54,16 @@ export default function Events() {
           content="Browse upcoming events and book your tickets"
         />
       </Head>
-      <Box backgroundColor="$white" minHeight="$full">
+      <Box backgroundColor="$white" minHeight="$full" role="main" accessibilityLabel="Events page">
         {error ? (
           <Box
             flex={1}
             justifyContent="center"
             alignItems="center"
             height={600}
+            accessibilityRole="alert"
           >
-            <Text color="$red500">{error}</Text>
+            <Text color="$red500" accessibilityRole="alert">{error}</Text>
           </Box>
         ) : loading ? (
           <Box gap="$16">

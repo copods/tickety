@@ -4,7 +4,7 @@ import { Skeleton } from "../../ui/skeleton";
 
 export const EventDetailSkeleton = () => {
   return (
-    <Box backgroundColor="$white" minHeight="$full">
+    <Box backgroundColor="$white" minHeight="$full" accessible={true} accessibilityRole="progressbar" accessibilityLabel="Loading event details">
       {/* Banner skeleton */}
       <Skeleton width="100%" height={350} borderRadius={0} />
 

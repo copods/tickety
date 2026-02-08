@@ -22,6 +22,9 @@ export const EventCarouselSkeleton = () => {
       height={carouselHeight}
       backgroundColor="#F3F4F6"
       overflow="hidden"
+      accessible={true}
+      accessibilityRole="progressbar"
+      accessibilityLabel="Loading event carousel"
     >
       <Box
         maxWidth={1400}

@@ -48,7 +48,11 @@ export function NavbarDemoScreen() {
                 title="Secondary Nav"
                 bgColor="$backgroundLight100"
                 leftElement={
-                    <Pressable onPress={() => Alert.alert('Menu Pressed')}>
+                    <Pressable
+                        onPress={() => Alert.alert('Menu Pressed')}
+                        accessibilityRole="button"
+                        accessibilityLabel="Open menu"
+                    >
                         <Text>☰</Text>
                     </Pressable>
                 }
