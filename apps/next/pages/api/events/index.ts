@@ -11,7 +11,12 @@ export default function handler(
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  const { category } = req.query;
+  const { category, artistId } = req.query;
+
+  if (artistId && typeof artistId === "string") {
+    const filtered = mockEvents.filter((e) => e.artistId === artistId);
+    return res.status(200).json(filtered);
+  }
 
   if (category && typeof category === "string") {
     const filtered = mockEvents.filter(
