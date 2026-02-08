@@ -15,6 +15,7 @@ export interface EventDetail extends CarouselEvent {
   category: string;
   organizer: string;
   ageRestriction: string;
+  artistId?: string;
 }
 
 export interface EventCategory {
