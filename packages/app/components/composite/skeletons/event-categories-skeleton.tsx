@@ -27,6 +27,9 @@ export const EventCategoriesSkeleton = () => {
       margin="auto"
       width="100%"
       maxWidth={1440}
+      accessible={true}
+      accessibilityRole="progressbar"
+      accessibilityLabel="Loading event categories"
     >
       {/* Title skeleton */}
       <Skeleton width={200} height={30} borderRadius={4} />

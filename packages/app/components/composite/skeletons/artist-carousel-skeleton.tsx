@@ -23,6 +23,9 @@ export const ArtistCarouselSkeleton = () => {
       width="100%"
       overflow="hidden"
       maxWidth={1440}
+      accessible={true}
+      accessibilityRole="progressbar"
+      accessibilityLabel="Loading artists"
     >
       {/* Header */}
       <HStack justifyContent="space-between" alignItems="center">

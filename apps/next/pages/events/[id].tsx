@@ -44,8 +44,9 @@ export default function EventPage() {
         alignItems="center"
         height={400}
         backgroundColor="$white"
+        accessibilityRole="alert"
       >
-        <Text color="$red500">{error || "Event not found"}</Text>
+        <Text color="$red500" accessibilityRole="alert">{error || "Event not found"}</Text>
       </Box>
     );
   }
@@ -63,6 +64,7 @@ export default function EventPage() {
             source={{ uri: event.bannerImage }}
             style={StyleSheet.absoluteFill}
             resizeMode="cover"
+            accessibilityLabel={`Banner image for ${event.name}`}
           />
           <Box
             position="absolute"
@@ -76,6 +78,8 @@ export default function EventPage() {
           <Box position="absolute" top="$6" left="$6" zIndex={2}>
             <Pressable
               onPress={() => router.back()}
+              accessibilityRole="button"
+              accessibilityLabel="Go back to previous page"
               style={({ pressed }) => ({
                 flexDirection: "row",
                 alignItems: "center",
@@ -158,6 +162,8 @@ export default function EventPage() {
               action="primary"
               borderRadius="$full"
               onPress={() => console.log("Booking tickets for", event.name)}
+              accessibilityRole="button"
+              accessibilityLabel={`Book tickets for ${event.name}`}
               width={180}
               height={50}
             >
