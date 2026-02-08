@@ -1704,6 +1704,7 @@ export const mockEvents: EventDetail[] = [
     category: "Music",
     organizer: "Live Nation India",
     ageRestriction: "All Ages",
+    artistId: "1",
   },
   {
     id: "4",
@@ -1721,6 +1722,7 @@ export const mockEvents: EventDetail[] = [
     category: "Music",
     organizer: "The Piano Man",
     ageRestriction: "All Ages",
+    artistId: "3",
   },
   {
     id: "5",
@@ -1738,6 +1740,7 @@ export const mockEvents: EventDetail[] = [
     category: "Music",
     organizer: "Paytm Insider",
     ageRestriction: "All Ages",
+    artistId: "6",
   },
 
   // ── Nightlife ──────────────────────────────────────────────
@@ -1757,6 +1760,7 @@ export const mockEvents: EventDetail[] = [
     category: "Nightlife",
     organizer: "Sunburn",
     ageRestriction: "18+",
+    artistId: "4",
   },
   {
     id: "7",
@@ -1774,6 +1778,7 @@ export const mockEvents: EventDetail[] = [
     category: "Nightlife",
     organizer: "Kitty Su Events",
     ageRestriction: "21+",
+    artistId: "4",
   },
   {
     id: "8",
@@ -1791,6 +1796,7 @@ export const mockEvents: EventDetail[] = [
     category: "Nightlife",
     organizer: "Neon Collective",
     ageRestriction: "21+",
+    artistId: "6",
   },
 
   // ── Comedy ─────────────────────────────────────────────────
@@ -1810,6 +1816,7 @@ export const mockEvents: EventDetail[] = [
     category: "Comedy",
     organizer: "OML Entertainment",
     ageRestriction: "16+",
+    artistId: "8",
   },
   {
     id: "10",
@@ -1827,6 +1834,7 @@ export const mockEvents: EventDetail[] = [
     category: "Comedy",
     organizer: "The Habitat Comedy",
     ageRestriction: "16+",
+    artistId: "5",
   },
   {
     id: "11",
@@ -1844,6 +1852,7 @@ export const mockEvents: EventDetail[] = [
     category: "Comedy",
     organizer: "Canvas Laugh Club",
     ageRestriction: "16+",
+    artistId: "3",
   },
 
   // ── Sports ─────────────────────────────────────────────────
@@ -1863,6 +1872,7 @@ export const mockEvents: EventDetail[] = [
     category: "Sports",
     organizer: "BCCI",
     ageRestriction: "All Ages",
+    artistId: "1",
   },
   {
     id: "13",
@@ -1880,6 +1890,7 @@ export const mockEvents: EventDetail[] = [
     category: "Sports",
     organizer: "Procam International",
     ageRestriction: "All Ages",
+    artistId: "2",
   },
 
   // ── Performances ───────────────────────────────────────────
@@ -1899,6 +1910,7 @@ export const mockEvents: EventDetail[] = [
     category: "Performances",
     organizer: "Comic Con India",
     ageRestriction: "All Ages",
+    artistId: "8",
   },
   {
     id: "15",
@@ -1916,6 +1928,7 @@ export const mockEvents: EventDetail[] = [
     category: "Performances",
     organizer: "Spic Macay",
     ageRestriction: "All Ages",
+    artistId: "2",
   },
 
   // ── Food & Drink ───────────────────────────────────────────
@@ -1935,6 +1948,7 @@ export const mockEvents: EventDetail[] = [
     category: "Food & Drink",
     organizer: "Foodholic Events",
     ageRestriction: "All Ages",
+    artistId: "7",
   },
   {
     id: "17",
@@ -1952,6 +1966,7 @@ export const mockEvents: EventDetail[] = [
     category: "Food & Drink",
     organizer: "BeerCraft India",
     ageRestriction: "21+",
+    artistId: "4",
   },
 
   // ── Fests & Fairs ──────────────────────────────────────────
@@ -1971,6 +1986,7 @@ export const mockEvents: EventDetail[] = [
     category: "Fests & Fairs",
     organizer: "Color Carnival India",
     ageRestriction: "All Ages",
+    artistId: "6",
   },
   {
     id: "19",
@@ -1988,6 +2004,7 @@ export const mockEvents: EventDetail[] = [
     category: "Fests & Fairs",
     organizer: "The Lil Flea",
     ageRestriction: "All Ages",
+    artistId: "5",
   },
 
   // ── Social Mixer ───────────────────────────────────────────
@@ -2007,6 +2024,7 @@ export const mockEvents: EventDetail[] = [
     category: "Social Mixer",
     organizer: "Meetup Delhi",
     ageRestriction: "18+",
+    artistId: "3",
   },
 
   // ── Screenings ─────────────────────────────────────────────
@@ -2026,6 +2044,7 @@ export const mockEvents: EventDetail[] = [
     category: "Screenings",
     organizer: "Sunset Cinema Club",
     ageRestriction: "All Ages",
+    artistId: "1",
   },
   {
     id: "22",
@@ -2043,6 +2062,7 @@ export const mockEvents: EventDetail[] = [
     category: "Screenings",
     organizer: "Anime Club India",
     ageRestriction: "All Ages",
+    artistId: "5",
   },
 
   // ── Fitness ────────────────────────────────────────────────
@@ -2062,6 +2082,7 @@ export const mockEvents: EventDetail[] = [
     category: "Fitness",
     organizer: "FitIndia Movement",
     ageRestriction: "All Ages",
+    artistId: "2",
   },
   {
     id: "24",
@@ -2079,6 +2100,7 @@ export const mockEvents: EventDetail[] = [
     category: "Fitness",
     organizer: "CrossFit India",
     ageRestriction: "16+",
+    artistId: "8",
   },
 
   // ── Conferences ────────────────────────────────────────────
@@ -2098,6 +2120,7 @@ export const mockEvents: EventDetail[] = [
     category: "Conferences",
     organizer: "TechSpark Events",
     ageRestriction: "All Ages",
+    artistId: "4",
   },
 
   // ── Expos ──────────────────────────────────────────────────
@@ -2117,6 +2140,7 @@ export const mockEvents: EventDetail[] = [
     category: "Expos",
     organizer: "SIAM",
     ageRestriction: "All Ages",
+    artistId: "7",
   },
 
   // ── Open Mics ──────────────────────────────────────────────
@@ -2136,6 +2160,7 @@ export const mockEvents: EventDetail[] = [
     category: "Open Mics",
     organizer: "Spoke & Word Collective",
     ageRestriction: "All Ages",
+    artistId: "3",
   },
   {
     id: "28",
@@ -2153,6 +2178,7 @@ export const mockEvents: EventDetail[] = [
     category: "Open Mics",
     organizer: "The Laugh Store",
     ageRestriction: "16+",
+    artistId: "6",
   },
 
   // ── Art Exhibitions ────────────────────────────────────────
@@ -2172,6 +2198,7 @@ export const mockEvents: EventDetail[] = [
     category: "Art Exhibitions",
     organizer: "NGMA Delhi",
     ageRestriction: "All Ages",
+    artistId: "2",
   },
 
   // ── Pets ───────────────────────────────────────────────────
@@ -2191,5 +2218,116 @@ export const mockEvents: EventDetail[] = [
     category: "Pets",
     organizer: "PetFed India",
     ageRestriction: "All Ages",
+    artistId: "5",
+  },
+
+  // ── Artist-specific Events ────────────────────────────────────
+  {
+    id: "31",
+    name: "Shreya Ghoshal - Melody Queen Live",
+    date: "Sat, 10 May",
+    time: "7:00 PM",
+    venue: "Shanmukhananda Hall, Mumbai",
+    price: "\u20B91500 onwards",
+    image:
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Shreya Ghoshal performs an enchanting evening of Bollywood classics and new compositions with a full live orchestra.",
+    category: "Music",
+    organizer: "Melody Events",
+    ageRestriction: "All Ages",
+    artistId: "2",
+  },
+  {
+    id: "32",
+    name: "Shreya Ghoshal - Classical Crossover Night",
+    date: "Sun, 25 May",
+    time: "6:30 PM",
+    venue: "Siri Fort Auditorium, Delhi",
+    price: "\u20B91800 onwards",
+    image:
+      "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "A unique concert blending Indian classical ragas with contemporary Bollywood melodies, performed by the legendary Shreya Ghoshal.",
+    category: "Music",
+    organizer: "Spic Macay",
+    ageRestriction: "All Ages",
+    artistId: "2",
+  },
+  {
+    id: "33",
+    name: "Anuv Jain - Baarishein Tour 2026",
+    date: "Fri, 02 May",
+    time: "8:00 PM",
+    venue: "Zorba Entertainment Centre, Delhi",
+    price: "\u20B9999 onwards",
+    image:
+      "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Anuv Jain brings his dreamy indie-pop hits to Delhi with an intimate live performance featuring tracks from his latest album.",
+    category: "Music",
+    organizer: "Paytm Insider",
+    ageRestriction: "All Ages",
+    artistId: "5",
+  },
+  {
+    id: "34",
+    name: "Neha Kakkar Live - Party Anthems Tour",
+    date: "Sat, 17 May",
+    time: "8:00 PM",
+    venue: "NSCI Dome, Mumbai",
+    price: "\u20B91200 onwards",
+    image:
+      "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Neha Kakkar delivers an electrifying night of her biggest Bollywood party anthems with high-energy dance performances.",
+    category: "Music",
+    organizer: "BookMyShow Live",
+    ageRestriction: "All Ages",
+    artistId: "7",
+  },
+  {
+    id: "35",
+    name: "Divine - Gully Gang Live",
+    date: "Fri, 09 May",
+    time: "9:00 PM",
+    venue: "AntiSOCIAL, Mumbai",
+    price: "\u20B9800 onwards",
+    image:
+      "https://images.unsplash.com/photo-1559386484-97dfc0e15539?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1559386484-97dfc0e15539?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Divine and the Gully Gang crew bring raw hip-hop energy with a night of bars, beats, and street culture.",
+    category: "Music",
+    organizer: "Gully Gang Entertainment",
+    ageRestriction: "18+",
+    artistId: "8",
+  },
+  {
+    id: "36",
+    name: "Arijit Singh - Soulful Sundown",
+    date: "Sat, 24 May",
+    time: "6:00 PM",
+    venue: "Jio World Garden, Mumbai",
+    price: "\u20B92500 onwards",
+    image:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=1000",
+    bannerImage:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "An open-air sunset concert featuring Arijit Singh performing romantic ballads and fan favourites in an intimate garden setting.",
+    category: "Music",
+    organizer: "Live Nation India",
+    ageRestriction: "All Ages",
+    artistId: "1",
   },
 ];
