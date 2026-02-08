@@ -4,13 +4,9 @@ import type {
   ArtistDetail,
   EventDetail,
   EventCategory,
-<<<<<<< HEAD
   PaginatedEventsResponse,
 } from "../types";
 export type { ArtistDetail } from "../types";
-=======
-} from "../types";
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 
 const EVENTS_API_URL = "/api/events";
 const ARTISTS_API_URL = "/api/artists";
@@ -67,7 +63,6 @@ export async function fetchEventsByCategory(
   return res.json();
 }
 
-<<<<<<< HEAD
 export async function fetchEventsByArtist(
   artistId: string
 ): Promise<EventDetail[]> {
@@ -78,8 +73,6 @@ export async function fetchEventsByArtist(
   return res.json();
 }
 
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 export async function fetchCategories(): Promise<EventCategory[]> {
   const res = await fetch(CATEGORIES_API_URL);
   if (!res.ok) throw new Error(`Failed to fetch categories (${res.status})`);
