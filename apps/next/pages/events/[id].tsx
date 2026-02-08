@@ -6,6 +6,7 @@ import type { EventDetail } from "@tickety/app/types";
 import { Button, ButtonText } from "@tickety/app/components/ui";
 import { Image, Pressable, Platform, StyleSheet } from "react-native";
 import { ChevronLeft } from "lucide-react-native";
+import { EventDetailSkeleton } from "@tickety/app/components/composite";
 import Head from "next/head";
 
 export default function EventPage() {
@@ -32,17 +33,7 @@ export default function EventPage() {
   }, [id]);
 
   if (loading) {
-    return (
-      <Box
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-        height={400}
-        backgroundColor="$white"
-      >
-        <Text color="$text500">Loading event...</Text>
-      </Box>
-    );
+    return <EventDetailSkeleton />;
   }
 
   if (error || !event) {

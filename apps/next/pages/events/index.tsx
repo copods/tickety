@@ -4,6 +4,9 @@ import {
   EventCarousel,
   ArtistCarousel,
   EventCategories,
+  EventCarouselSkeleton,
+  ArtistCarouselSkeleton,
+  EventCategoriesSkeleton,
 } from "@tickety/app/components/composite";
 import type {
   CarouselEvent,
@@ -17,6 +20,7 @@ import {
 } from "@tickety/app/services/api";
 import { Box } from "@tickety/app/components/ui/box";
 import { Text } from "@tickety/app/components/ui";
+
 import Head from "next/head";
 
 export default function Events() {
@@ -51,16 +55,7 @@ export default function Events() {
         />
       </Head>
       <Box backgroundColor="$white" minHeight="$full">
-        {loading ? (
-          <Box
-            flex={1}
-            justifyContent="center"
-            alignItems="center"
-            height={600}
-          >
-            <Text color="$text500">Loading events...</Text>
-          </Box>
-        ) : error ? (
+        {error ? (
           <Box
             flex={1}
             justifyContent="center"
@@ -68,6 +63,12 @@ export default function Events() {
             height={600}
           >
             <Text color="$red500">{error}</Text>
+          </Box>
+        ) : loading ? (
+          <Box gap="$16">
+            <EventCarouselSkeleton />
+            <EventCategoriesSkeleton />
+            <ArtistCarouselSkeleton />
           </Box>
         ) : (
           <Box gap="$16">
