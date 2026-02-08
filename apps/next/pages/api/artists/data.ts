@@ -43,6 +43,7 @@ export const mockArtists: ArtistDetail[] = [
   },
   {
     id: "5",
+
     name: "Anuv Jain",
     image:
       "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=400",
