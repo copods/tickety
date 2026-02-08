@@ -45,6 +45,16 @@ export async function fetchEventsByCategory(
   return res.json();
 }
 
+export async function fetchEventsByArtist(
+  artistId: string
+): Promise<EventDetail[]> {
+  const res = await fetch(
+    `${EVENTS_API_URL}?artistId=${encodeURIComponent(artistId)}`
+  );
+  if (!res.ok) throw new Error(`Failed to fetch events (${res.status})`);
+  return res.json();
+}
+
 export async function fetchCategories(): Promise<EventCategory[]> {
   const res = await fetch(CATEGORIES_API_URL);
   if (!res.ok) throw new Error(`Failed to fetch categories (${res.status})`);

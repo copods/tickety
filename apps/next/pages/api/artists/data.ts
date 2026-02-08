@@ -1,4 +1,5 @@
 import type { ArtistDetail } from "@tickety/app/types";
+export type { ArtistDetail } from "@tickety/app/types";
 
 export const mockArtists: ArtistDetail[] = [
   {
