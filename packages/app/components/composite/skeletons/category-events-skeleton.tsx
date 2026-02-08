@@ -16,7 +16,7 @@ export const CategoryEventsSkeleton = () => {
   const cardCount = isMobile ? 2 : 4;
 
   return (
-    <Box backgroundColor="$white" minHeight="$full">
+    <Box backgroundColor="$white" minHeight="$full" accessible={true} accessibilityRole="progressbar" accessibilityLabel="Loading category events">
       <Box gap="$10">
         {/* Carousel skeleton */}
         <EventCarouselSkeleton />

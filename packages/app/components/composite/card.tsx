@@ -34,6 +34,8 @@ export function Card({ title, description, children, variant = 'elevated' }: Car
             p="$4"
             rounded="$lg"
             {...variantStyles[variant]}
+            role="article"
+            accessibilityLabel={title || 'Card'}
         >
             <VStack space="md">
                 {title && <Heading size="md">{title}</Heading>}

@@ -54,8 +54,9 @@ export default function CategoryPage() {
         alignItems="center"
         height={400}
         backgroundColor="$white"
+        accessibilityRole="alert"
       >
-        <Text color="$red500">{error}</Text>
+        <Text color="$red500" accessibilityRole="alert">{error}</Text>
       </Box>
     );
   }
@@ -117,6 +118,8 @@ export default function CategoryPage() {
                   >
                     <Pressable
                       onPress={() => router.push(`/events/${event.id}`)}
+                      accessibilityRole="link"
+                      accessibilityLabel={`${event.name}, ${event.date} at ${event.venue}, ${event.price}`}
                       style={({ pressed }) => ({
                         opacity: pressed ? 0.85 : 1,
                         cursor: isWeb ? "pointer" : "default",
@@ -129,6 +132,7 @@ export default function CategoryPage() {
                             source={{ uri: event.image }}
                             style={{ width: "100%", height: "100%" }}
                             resizeMode="cover"
+                            accessibilityLabel={`${event.name} event poster`}
                           />
                         </Box>
 

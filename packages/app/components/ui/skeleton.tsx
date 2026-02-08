@@ -38,6 +38,9 @@ export const Skeleton = ({
 
   return (
     <Animated.View
+      accessible={true}
+      accessibilityRole="progressbar"
+      accessibilityLabel="Loading content"
       style={[
         {
           width: width as any,

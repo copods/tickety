@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, HStack, Text } from "../ui";
+import { Box, HStack, Text, Heading } from "../ui";
 import {
   Image,
   Pressable,
@@ -48,6 +48,8 @@ export const EventCategories = ({
     <Pressable
       key={category.id}
       onPress={() => onCategoryPress?.(category)}
+      accessibilityRole="button"
+      accessibilityLabel={`Browse ${category.name} events`}
       style={({ pressed }) => ({
         opacity: pressed ? 0.85 : 1,
         cursor: isWeb ? "pointer" : "default",
@@ -64,6 +66,7 @@ export const EventCategories = ({
           source={{ uri: category.image }}
           style={{ width: "100%", height: "100%" }}
           resizeMode="cover"
+          accessibilityLabel={`${category.name} category image`}
         />
 
         {/* Overlay */}
@@ -108,10 +111,12 @@ export const EventCategories = ({
       margin="auto"
       width="100%"
       maxWidth={1440}
+      accessibilityRole="summary"
+      accessibilityLabel="Explore event categories"
     >
-      <Text fontSize="$3xl" fontWeight="$bold">
+      <Heading fontSize="$3xl" fontWeight="$bold">
         Explore Events
-      </Text>
+      </Heading>
 
       {/* MOBILE: 2 ROW HORIZONTAL SCROLL */}
       {isMobile ? (
