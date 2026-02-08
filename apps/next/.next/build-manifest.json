@@ -26,19 +26,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/events.js"
-<<<<<<< HEAD
-=======
-    ],
-    "/events/[id]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/events/[id].js"
-    ],
-    "/events/category/[category]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/events/category/[category].js"
->>>>>>> 1a569a5 (updated event ards)
     ]
   },
   "ampFirstPages": []
