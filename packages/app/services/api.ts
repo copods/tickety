@@ -5,6 +5,7 @@ import type {
   EventDetail,
   EventCategory,
 } from "../types";
+export type { ArtistDetail } from "../types";
 
 const EVENTS_API_URL = "/api/events";
 const ARTISTS_API_URL = "/api/artists";

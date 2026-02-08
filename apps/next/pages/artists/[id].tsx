@@ -4,6 +4,7 @@ import { Box, VStack, HStack, Text } from "@tickety/app/components/ui";
 import { fetchArtistById, ArtistDetail } from "@tickety/app/services/api";
 import { Image, Pressable, Platform } from "react-native";
 import { ChevronLeft } from "lucide-react-native";
+import { ArtistDetailSkeleton } from "@tickety/app/components/composite";
 import Head from "next/head";
 
 export default function ArtistPage() {
@@ -30,17 +31,7 @@ export default function ArtistPage() {
   }, [id]);
 
   if (loading) {
-    return (
-      <Box
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-        height={400}
-        backgroundColor="$white"
-      >
-        <Text color="$text500">Loading artist...</Text>
-      </Box>
-    );
+    return <ArtistDetailSkeleton />;
   }
 
   if (error || !artist) {

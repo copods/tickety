@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { EventCarousel } from "@tickety/app/components/composite";
+import { EventCarousel, CategoryEventsSkeleton } from "@tickety/app/components/composite";
 import type { EventDetail } from "@tickety/app/types";
 import { fetchEventsByCategory } from "@tickety/app/services/api";
 import { Box, VStack, HStack, Text, Heading } from "@tickety/app/components/ui";
@@ -43,17 +43,7 @@ export default function CategoryPage() {
   const categoryName = typeof category === "string" ? category : "";
 
   if (loading) {
-    return (
-      <Box
-        flex={1}
-        justifyContent="center"
-        alignItems="center"
-        height={400}
-        backgroundColor="$white"
-      >
-        <Text color="$text500">Loading {categoryName} events...</Text>
-      </Box>
-    );
+    return <CategoryEventsSkeleton />;
   }
 
   if (error) {
