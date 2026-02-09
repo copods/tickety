@@ -1,1 +1,0 @@
-export { AllEventsScreen } from './screen'

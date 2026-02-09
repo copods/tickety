@@ -77,7 +77,6 @@ export const EventCategories = ({
 
   const isMobile = isMounted ? width < 768 : false;
 
-
   if (!categories?.length) return null;
 
   const theme = {
