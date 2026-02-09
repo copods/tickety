@@ -87,4 +87,8 @@ export interface FilterModalProps {
   genres: string[];
   currentFilters: EventFilters;
   useDarkTheme: boolean;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e845485 (feat: updates in events page regarding explore events, navigation bar, all events and footer)

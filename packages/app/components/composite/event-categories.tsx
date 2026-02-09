@@ -66,7 +66,6 @@ export const EventCategories = ({
   onCategoryPress,
 }: EventCategoriesProps) => {
   const isWeb = Platform.OS === "web";
-
   const useDarkTheme = !isWeb;
   const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowDimensions();

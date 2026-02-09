@@ -34,7 +34,6 @@ export default function handler(
 
   // Legacy: filter by category (non-paginated, when no page param)
   if (category && typeof category === "string" && !page) {
-
     const filtered = mockEvents.filter(
       (e) => e.category.toLowerCase() === category.toLowerCase()
     );
@@ -91,5 +90,4 @@ export default function handler(
 
   // Non-paginated response (backward compatible)
   res.status(200).json(filtered);
-
 }
