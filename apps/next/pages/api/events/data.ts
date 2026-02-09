@@ -423,39 +423,42 @@ export const mockEvents: EventDetail[] = [
     organizer: "PetFed India",
     ageRestriction: "All Ages",
   },
+
+  // ── Sports ───────────────────────────────────────────────────
   {
-    id: "3",
-    name: "Arijit Singh Live - Love Tour 2026",
-    date: "Sun, 05 Apr",
-    time: "7:30 PM",
-    venue: "DY Patil Stadium, Mumbai",
-    price: "\u20B92000 onwards",
+    id: "31",
+    name: "Delhi Runners Half Marathon 2026",
+    date: "Sun, 23 Mar",
+    time: "5:30 AM",
+    venue: "Jawaharlal Nehru Stadium, Delhi",
+    price: "₹1,200 onwards",
     image:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&q=80&w=1000",
     description:
-      "Arijit Singh performs his greatest hits live — from Tum Hi Ho to Kesariya. An unforgettable night of soulful melodies under the stars.",
-    category: "Music",
-    organizer: "Live Nation India",
+      "Join thousands of runners for a high-energy half marathon featuring 21K, 10K, and 5K categories. Includes race kit, medal, refreshments, and medical support.",
+    category: "Sports",
+    organizer: "Delhi Marathon Foundation",
     ageRestriction: "All Ages",
   },
+
+  // ── Comedy ───────────────────────────────────────────────────
   {
-    id: "4",
-    name: "Bollywood Music Festival",
-    date: "Sat, 21 Mar",
-    time: "7:00 PM",
-    venue: "Indira Gandhi Indoor Stadium, Delhi",
-    price: "\u20B91500 onwards",
+    id: "32",
+    name: "Laugh Riot Stand-Up Special: Abhishek Upmanyu",
+    date: "Sat, 29 Mar",
+    time: "8:00 PM",
+    venue: "Siri Fort Auditorium, Delhi",
+    price: "₹799 onwards",
     image:
-      "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
-      "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=1000",
     description:
-      "A grand celebration of Bollywood music featuring top playback singers and live orchestras performing your favourite hits from classic to contemporary Bollywood.",
-    category: "Music",
-    organizer: "Bollywood Live Entertainment",
-    ageRestriction: "All Ages",
-    artistId: "1",
+      "A laughter-packed evening with Abhishek Upmanyu as he brings relatable stories, sharp observations, and brand-new jokes to the stage.",
+    category: "Comedy",
+    organizer: "Comicstaan Live",
+    ageRestriction: "16+",
   },
 ];
