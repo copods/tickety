@@ -77,11 +77,7 @@ export default function Events() {
             <ArtistCarouselSkeleton />
           </Box>
         ) : (
-<<<<<<< HEAD
           <Box gap="$0">
-=======
-          <Box>
->>>>>>> 373cab1 (skelton-added)
             <Navbar />
             <Box gap="$16">
             <EventCarousel
