@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
 import { Box, HStack, Text, Heading } from "../ui";
 import {
-=======
-import { Box, HStack, Text } from "../ui";
-import {
-  Image,
->>>>>>> ead0c7c (Added event categories carousle and detail page)
   Pressable,
   ScrollView,
   Platform,
   useWindowDimensions,
 } from "react-native";
-<<<<<<< HEAD
 import {
   Music,
   Sparkles,
@@ -31,14 +24,10 @@ import {
   Mic,
 } from "lucide-react-native";
 import type { LucideIcon } from "lucide-react-native";
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
-
 import type { EventCategory, EventCategoriesProps } from "../../types";
 
 export type { EventCategory };
 
-<<<<<<< HEAD
 /** Map category names to icons */
 const CATEGORY_ICON_MAP: Record<string, LucideIcon> = {
   Music: Music,
@@ -60,8 +49,6 @@ const CATEGORY_ICON_MAP: Record<string, LucideIcon> = {
   "Open Mics": Mic,
 };
 
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 /** Split categories into two rows for mobile */
 const splitIntoTwoRows = (items: EventCategory[]) => {
   const row1: EventCategory[] = [];
@@ -79,10 +66,8 @@ export const EventCategories = ({
   onCategoryPress,
 }: EventCategoriesProps) => {
   const isWeb = Platform.OS === "web";
-<<<<<<< HEAD
+
   const useDarkTheme = !isWeb;
-=======
->>>>>>> ead0c7c (Added event categories carousle and detail page)
   const [isMounted, setIsMounted] = useState(false);
   const { width } = useWindowDimensions();
 
@@ -91,7 +76,6 @@ export const EventCategories = ({
   }, []);
 
   const isMobile = isMounted ? width < 768 : false;
-<<<<<<< HEAD
 
   if (!categories?.length) return null;
 
@@ -196,70 +180,6 @@ export const EventCategories = ({
       </Pressable>
     );
   };
-=======
-  const isTablet = isMounted ? width >= 768 && width < 1024 : false;
-
-  if (!categories?.length) return null;
-
-  const cardWidth = isMobile ? 150 : isTablet ? 180 : 148;
-  const cardHeight = isMobile ? 180 : isTablet ? 210 : 180;
-
-  const renderCard = (category: EventCategory) => (
-    <Pressable
-      key={category.id}
-      onPress={() => onCategoryPress?.(category)}
-      style={({ pressed }) => ({
-        opacity: pressed ? 0.85 : 1,
-        cursor: isWeb ? "pointer" : "default",
-      })}
-    >
-      <Box
-        width={cardWidth}
-        height={cardHeight}
-        borderRadius="$xl"
-        overflow="hidden"
-        position="relative"
-      >
-        <Image
-          source={{ uri: category.image }}
-          style={{ width: "100%", height: "100%" }}
-          resizeMode="cover"
-        />
-
-        {/* Overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          bottom={0}
-          left={0}
-          right={0}
-          backgroundColor="$overlay"
-        />
-
-        {/* Title */}
-        <Box
-          position="absolute"
-          bottom={0}
-          left={0}
-          right={0}
-          p="$3"
-          alignItems="center"
-        >
-          <Text
-            color="$white"
-            fontWeight="$bold"
-            fontSize={isMobile ? "$md" : "$lg"}
-            numberOfLines={2}
-            textAlign="center"
-          >
-            {category.name}
-          </Text>
-        </Box>
-      </Box>
-    </Pressable>
-  );
->>>>>>> ead0c7c (Added event categories carousle and detail page)
-
   const [row1, row2] = splitIntoTwoRows(categories);
 
   return (
@@ -269,19 +189,12 @@ export const EventCategories = ({
       margin="auto"
       width="100%"
       maxWidth={1440}
-<<<<<<< HEAD
       accessibilityRole="summary"
       accessibilityLabel="Explore event categories"
     >
       <Heading fontSize="$3xl" fontWeight="$bold">
         Explore Events
       </Heading>
-=======
-    >
-      <Text fontSize="$3xl" fontWeight="$bold">
-        Explore Events
-      </Text>
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 
       {/* MOBILE: 2 ROW HORIZONTAL SCROLL */}
       {isMobile ? (
@@ -305,7 +218,6 @@ export const EventCategories = ({
         </ScrollView>
       ) : (
         /* TABLET / DESKTOP GRID */
-<<<<<<< HEAD
         <Box
           sx={{
             _web: {
@@ -320,11 +232,6 @@ export const EventCategories = ({
         >
           {categories.map(renderCard)}
         </Box>
-=======
-        <HStack space="lg" flexWrap="wrap" gap="$3">
-          {categories.map(renderCard)}
-        </HStack>
->>>>>>> ead0c7c (Added event categories carousle and detail page)
       )}
     </Box>
   );

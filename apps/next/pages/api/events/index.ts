@@ -17,18 +17,13 @@ function extractPrice(priceStr: string): number {
 
 export default function handler(
   req: NextApiRequest,
-<<<<<<< HEAD
   res: NextApiResponse<EventDetail[] | PaginatedResponse>
-=======
-  res: NextApiResponse<EventDetail[]>
->>>>>>> ead0c7c (Added event categories carousle and detail page)
 ) {
   if (req.method !== "GET") {
     res.setHeader("Allow", ["GET"]);
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-<<<<<<< HEAD
   const { category, artistId, page, limit, sortBy, genre } = req.query;
 
   // Legacy: filter by artistId (non-paginated)
@@ -39,18 +34,13 @@ export default function handler(
 
   // Legacy: filter by category (non-paginated, when no page param)
   if (category && typeof category === "string" && !page) {
-=======
-  const { category } = req.query;
 
-  if (category && typeof category === "string") {
->>>>>>> ead0c7c (Added event categories carousle and detail page)
     const filtered = mockEvents.filter(
       (e) => e.category.toLowerCase() === category.toLowerCase()
     );
     return res.status(200).json(filtered);
   }
 
-<<<<<<< HEAD
   let filtered = [...mockEvents];
 
   // Genre filtering (comma-separated category names)
@@ -101,7 +91,5 @@ export default function handler(
 
   // Non-paginated response (backward compatible)
   res.status(200).json(filtered);
-=======
-  res.status(200).json(mockEvents);
->>>>>>> ead0c7c (Added event categories carousle and detail page)
+
 }
