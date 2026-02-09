@@ -4,12 +4,33 @@ import {
     HStack,
     Text,
     Pressable,
-    Divider,
+    Image,
 } from '@gluestack-ui/themed'
 import { Link } from 'solito/link'
 import { Platform, useWindowDimensions } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { Facebook, Instagram, Twitter, Youtube, Mail } from 'lucide-react-native'
+import { useEffect, useState } from 'react'
+import { MessageCircle, Facebook, Instagram, Twitter, Youtube } from 'lucide-react-native'
+
+const BG = '#1a1a1a'
+const LINK_COLOR = '#ffffff'
+const SUB_TEXT = '#9ca3af'
+const DIVIDER_COLOR = '#333333'
+const ICON_COLOR = '#ffffff'
+
+const NAV_LINKS = [
+    { label: 'Terms & Conditions', href: '/terms' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Contact Us', href: '/contact' },
+    { label: 'List your events', href: '/list-events' },
+]
+
+const SOCIAL_LINKS = [
+    { icon: MessageCircle, href: 'https://whatsapp.com', label: 'WhatsApp' },
+    { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: Twitter, href: 'https://twitter.com', label: 'X' },
+    { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
+]
 
 export function Footer() {
     const { width } = useWindowDimensions()
@@ -21,186 +42,199 @@ export function Footer() {
     }, [])
 
     useEffect(() => {
-        setIsMobile(width < 700)
+        setIsMobile(width < 900)
     }, [width])
 
     const isWeb = Platform.OS === 'web'
-    const useDarkTheme = !isWeb
-
-    const theme = {
-        bg: useDarkTheme ? '$backgroundDark950' : '$coolGray900',
-        text: useDarkTheme ? '$textDark200' : '$coolGray300',
-        linkText: useDarkTheme ? '$textDark100' : '$white',
-        divider: useDarkTheme ? '$borderDark800' : '$coolGray700',
-        iconColor: useDarkTheme ? '#d1d5db' : '#d1d5db',
-    }
-
-    const footerLinks = [
-        { label: 'About Us', href: '/about' },
-        { label: 'Contact Us', href: '/contact' },
-        { label: 'Terms & Conditions', href: '/terms' },
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Refund Policy', href: '/refund' },
-    ]
-
-    const socialLinks = [
-        { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
-        { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
-        { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-        { icon: Youtube, href: 'https://youtube.com', label: 'YouTube' },
-        { icon: Mail, href: 'mailto:info@tickety.com', label: 'Email' },
-    ]
 
     if (!mounted && isWeb) {
-        return <Box h={200} bg={theme.bg} />
+        return <Box h={280} bg={BG} />
     }
 
     return (
-        <Box bg={theme.bg} w="100%">
+        <Box bg={BG} w="100%">
             <VStack
                 maxWidth={1480}
                 mx="auto"
                 w="100%"
-                px={isMobile ? '$4' : '$8'}
-                py={isMobile ? '$8' : '$12'}
-                space={isMobile ? '$8' : '$10'}
+                px={isMobile ? '$5' : '$10'}
+                pt={isMobile ? '$8' : '$10'}
+                pb={isMobile ? '$6' : '$8'}
             >
-                {/* Main Footer Content */}
-                <VStack space={isMobile ? '$6' : '$8'}>
-                    {/* Company Info & Links */}
-                    <VStack space="lg">
-                        {/* Logo/Brand */}
+                {/* Top Section */}
+                {isMobile ? (
+                    <VStack space="xl">
+                        {/* Logo */}
                         <VStack space="xs">
                             <Text
                                 fontWeight="$extrabold"
-                                fontSize={isMobile ? '$2xl' : '$3xl'}
-                                color={theme.linkText}
+                                fontSize="$3xl"
+                                color={LINK_COLOR}
                                 lineHeight="$xs"
                             >
-                                tickety
+                                district
                             </Text>
-                            <Text fontSize="$xs" color={theme.text} maxWidth={isMobile ? '100%' : 500}>
-                                Your gateway to the best events, concerts, and experiences in your city.
-                                Book tickets seamlessly and never miss out on what's happening around you.
+                            <Text
+                                fontSize="$2xs"
+                                fontWeight="$bold"
+                                color={LINK_COLOR}
+                                letterSpacing="$lg"
+                            >
+                                BY ZOMATO
                             </Text>
                         </VStack>
 
-                        {/* Footer Links */}
-                        <Box
-                            flexDirection={isMobile ? 'column' : 'row'}
-                            flexWrap="wrap"
-                            gap={isMobile ? '$3' : '$6'}
-                        >
-                            {footerLinks.map((link) => (
+                        {/* Nav links */}
+                        <VStack space="lg">
+                            {NAV_LINKS.map((link) => (
                                 <Link key={link.label} href={link.href}>
-                                    <Pressable>
-                                        {({ pressed }) => (
-                                            <Text
-                                                fontSize="$sm"
-                                                color={theme.text}
-                                                sx={{
-                                                    _web: {
-                                                        ':hover': {
-                                                            color: theme.linkText,
-                                                            textDecoration: 'underline',
-                                                        },
-                                                    },
-                                                }}
-                                            >
-                                                {link.label}
-                                            </Text>
-                                        )}
-                                    </Pressable>
+                                    <Text fontSize="$sm" color={LINK_COLOR}>
+                                        {link.label}
+                                    </Text>
                                 </Link>
                             ))}
-                        </Box>
-                    </VStack>
+                        </VStack>
 
-                    {/* App Download Section */}
-                    <VStack space="md">
-                        <Text fontSize="$md" fontWeight="$semibold" color={theme.linkText}>
-                            Download Our App
-                        </Text>
-                        <HStack space="md" flexWrap="wrap">
-                            <Link href="https://apps.apple.com">
-                                <Pressable>
-                                    <Box
-                                        bg="$black"
-                                        px="$4"
-                                        py="$2.5"
-                                        borderRadius="$lg"
-                                        borderWidth={1}
-                                        borderColor="$white"
-                                    >
-                                        <Text fontSize="$xs" color="$white" fontWeight="$semibold">
-                                            App Store
-                                        </Text>
-                                    </Box>
-                                </Pressable>
-                            </Link>
-                            <Link href="https://play.google.com">
-                                <Pressable>
-                                    <Box
-                                        bg="$black"
-                                        px="$4"
-                                        py="$2.5"
-                                        borderRadius="$lg"
-                                        borderWidth={1}
-                                        borderColor="$white"
-                                    >
-                                        <Text fontSize="$xs" color="$white" fontWeight="$semibold">
-                                            Google Play
-                                        </Text>
-                                    </Box>
-                                </Pressable>
-                            </Link>
-                        </HStack>
+                        {/* QR Code */}
+                        <VStack space="sm" alignItems="flex-start">
+                            <Box
+                                w={100}
+                                h={100}
+                                bg="$white"
+                                borderRadius={8}
+                                overflow="hidden"
+                            >
+                                <Image
+                                    source={{ uri: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://district.zomato.com' }}
+                                    alt="Scan to download"
+                                    w="100%"
+                                    h="100%"
+                                />
+                            </Box>
+                            <Text fontSize="$sm" color={LINK_COLOR}>
+                                Scan to download the app
+                            </Text>
+                        </VStack>
                     </VStack>
+                ) : (
+                    // Desktop: 3-column row
+                    <HStack
+                        justifyContent="space-between"
+                        alignItems="center"
+                        py="$8"
+                    >
+                        {/* Left: Logo */}
+                        <VStack space="xs">
+                            <Text
+                                fontWeight="$extrabold"
+                                fontSize="$4xl"
+                                color={LINK_COLOR}
+                                sx={{
+                                    _web: {
+                                        letterSpacing: '-1px',
+                                    },
+                                }}
+                            >
+                                district
+                            </Text>
+                            <Text
+                                fontSize="$xs"
+                                fontWeight="$bold"
+                                color={LINK_COLOR}
+                                letterSpacing="$lg"
+                            >
+                                BY ZOMATO
+                            </Text>
+                        </VStack>
 
-                    {/* Social Media Links */}
-                    <VStack space="md">
-                        <Text fontSize="$md" fontWeight="$semibold" color={theme.linkText}>
-                            Follow Us
-                        </Text>
-                        <HStack space="lg">
-                            {socialLinks.map((social) => (
-                                <Link key={social.label} href={social.href}>
-                                    <Pressable>
-                                        {({ pressed }) => (
-                                            <Box
-                                                p="$2"
-                                                borderRadius="$full"
-                                                sx={{
-                                                    _web: {
-                                                        transition: 'all 0.2s ease',
-                                                        ':hover': {
-                                                            bg: '$coolGray800',
-                                                        },
-                                                    },
-                                                }}
-                                            >
-                                                <social.icon size={20} color={theme.iconColor} />
-                                            </Box>
-                                        )}
-                                    </Pressable>
+                        {/* Center: Nav links */}
+                        <HStack space="2xl" alignItems="center">
+                            {NAV_LINKS.map((link) => (
+                                <Link key={link.label} href={link.href}>
+                                    <Text
+                                        fontSize="$sm"
+                                        color={LINK_COLOR}
+                                        sx={{
+                                            _web: {
+                                                transition: 'opacity 0.15s ease',
+                                                ':hover': {
+                                                    opacity: 0.7,
+                                                },
+                                            },
+                                        }}
+                                    >
+                                        {link.label}
+                                    </Text>
                                 </Link>
                             ))}
                         </HStack>
-                    </VStack>
-                </VStack>
+
+                        {/* Right: QR Code */}
+                        <VStack space="sm" alignItems="center">
+                            <Box
+                                w={120}
+                                h={120}
+                                bg="$white"
+                                borderRadius={8}
+                                overflow="hidden"
+                            >
+                                <Image
+                                    source={{ uri: 'https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://district.zomato.com' }}
+                                    alt="Scan to download"
+                                    w="100%"
+                                    h="100%"
+                                />
+                            </Box>
+                            <Text fontSize="$sm" color={LINK_COLOR}>
+                                Scan to download the app
+                            </Text>
+                        </VStack>
+                    </HStack>
+                )}
 
                 {/* Divider */}
-                <Divider bg={theme.divider} />
+                <Box h={1} bg={DIVIDER_COLOR} my={isMobile ? '$6' : '$2'} />
 
-                {/* Copyright */}
-                <VStack space="sm" alignItems={isMobile ? 'flex-start' : 'center'}>
-                    <Text fontSize="$xs" color={theme.text} textAlign={isMobile ? 'left' : 'center'}>
-                        © {new Date().getFullYear()} Tickety. All rights reserved.
+                {/* Bottom Section */}
+                <HStack
+                    justifyContent="space-between"
+                    alignItems={isMobile ? 'flex-start' : 'center'}
+                    flexDirection={isMobile ? 'column' : 'row'}
+                    gap={isMobile ? '$4' : undefined}
+                    py="$4"
+                >
+                    {/* Legal text */}
+                    <Text
+                        fontSize="$xs"
+                        color={SUB_TEXT}
+                        lineHeight="$md"
+                        sx={{
+                            _web: {
+                                maxWidth: isMobile ? '100%' : '65%',
+                            },
+                        }}
+                    >
+                        By accessing this page, you confirm that you have read, understood, and agreed to our Terms of Service, Cookie Policy, Privacy Policy, and Content Guidelines. All rights reserved.
                     </Text>
-                    <Text fontSize="$2xs" color={theme.text} textAlign={isMobile ? 'left' : 'center'}>
-                        By using this service, you agree to our Terms & Conditions and Privacy Policy.
-                    </Text>
-                </VStack>
+
+                    {/* Social Icons */}
+                    <HStack space="lg" alignItems="center">
+                        {SOCIAL_LINKS.map((social) => (
+                            <Link key={social.label} href={social.href}>
+                                <Pressable
+                                    sx={{
+                                        _web: {
+                                            transition: 'opacity 0.15s ease',
+                                            ':hover': { opacity: 0.7 },
+                                        },
+                                    }}
+                                >
+                                    <social.icon size={22} color={ICON_COLOR} />
+                                </Pressable>
+                            </Link>
+                        ))}
+                    </HStack>
+                </HStack>
             </VStack>
         </Box>
     )

@@ -1,7 +1,7 @@
 import { Box } from '@gluestack-ui/themed'
 import { TextLink } from 'solito/link'
 import { MotiLink } from 'solito/moti'
-import { NavBar } from '../navbar'
+import { NavBar } from '../navigation-bar'
 
 export function HomeScreen() {
   return (
