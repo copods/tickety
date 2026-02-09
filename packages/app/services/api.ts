@@ -4,6 +4,7 @@ import type {
   ArtistDetail,
   EventDetail,
   EventCategory,
+  PaginatedEventsResponse,
 } from "../types";
 export type { ArtistDetail } from "../types";
 
@@ -13,6 +14,23 @@ const CATEGORIES_API_URL = "/api/categories";
 
 export async function fetchEvents(): Promise<CarouselEvent[]> {
   const res = await fetch(EVENTS_API_URL);
+  if (!res.ok) throw new Error(`Failed to fetch events (${res.status})`);
+  return res.json();
+}
+
+export async function fetchAllEvents(params: {
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  genre?: string;
+}): Promise<PaginatedEventsResponse> {
+  const searchParams = new URLSearchParams();
+  if (params.page) searchParams.set("page", String(params.page));
+  if (params.limit) searchParams.set("limit", String(params.limit));
+  if (params.sortBy) searchParams.set("sortBy", params.sortBy);
+  if (params.genre) searchParams.set("genre", params.genre);
+
+  const res = await fetch(`${EVENTS_API_URL}?${searchParams.toString()}`);
   if (!res.ok) throw new Error(`Failed to fetch events (${res.status})`);
   return res.json();
 }

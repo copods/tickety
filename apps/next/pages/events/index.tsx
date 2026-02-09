@@ -4,9 +4,12 @@ import {
   EventCarousel,
   ArtistCarousel,
   EventCategories,
+  AllEvents,
   EventCarouselSkeleton,
   ArtistCarouselSkeleton,
   EventCategoriesSkeleton,
+  Navbar,
+  Footer,
 } from "@tickety/app/components/composite";
 import type {
   CarouselEvent,
@@ -45,6 +48,8 @@ export default function Events() {
       });
   }, []);
 
+  const genreNames = categories.map((c) => c.name);
+
   return (
     <>
       <Head>
@@ -72,22 +77,29 @@ export default function Events() {
             <ArtistCarouselSkeleton />
           </Box>
         ) : (
-          <Box gap="$16">
+          <Box>
+            <Navbar />
+            <Box gap="$16">
             <EventCarousel
               data={events.slice(0, 5)}
               onEventPress={(event) => router.push(`/events/${event.id}`)}
             />
-            <EventCategories
-              categories={categories}
-              onCategoryPress={(category) =>
-                router.push(`/events/category/${encodeURIComponent(category.name)}`)
-              }
-            />
-            <ArtistCarousel
-              artists={artists}
-              onArtistPress={(artist) => router.push(`/artists/${artist.id}`)}
-            />
-            <div></div>
+              <EventCategories
+                categories={categories}
+                onCategoryPress={(category) =>
+                  router.push(`/events/category/${encodeURIComponent(category.name)}`)
+                }
+              />
+              <ArtistCarousel
+                artists={artists}
+                onArtistPress={(artist) => router.push(`/artists/${artist.id}`)}
+              />
+              <AllEvents
+                genres={genreNames}
+                onEventPress={(event) => router.push(`/events/${event.id}`)}
+              />
+            </Box>
+            <Footer />
           </Box>
         )}
       </Box>

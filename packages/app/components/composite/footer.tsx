@@ -135,16 +135,9 @@ export function Footer() {
                                     },
                                 }}
                             >
-                                district
+                                Tickety
                             </Text>
-                            <Text
-                                fontSize="$xs"
-                                fontWeight="$bold"
-                                color={LINK_COLOR}
-                                letterSpacing="$lg"
-                            >
-                                BY ZOMATO
-                            </Text>
+                           
                         </VStack>
 
                         {/* Center: Nav links */}
