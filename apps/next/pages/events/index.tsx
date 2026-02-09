@@ -4,15 +4,12 @@ import {
   EventCarousel,
   ArtistCarousel,
   EventCategories,
+  AllEvents,
   EventCarouselSkeleton,
   ArtistCarouselSkeleton,
   EventCategoriesSkeleton,
 } from "@tickety/app/components/composite";
-import type {
-  CarouselEvent,
-  Artist,
-  EventCategory,
-} from "@tickety/app/types";
+import type { CarouselEvent, Artist, EventCategory } from "@tickety/app/types";
 import {
   fetchEvents,
   fetchArtists,
@@ -45,6 +42,8 @@ export default function Events() {
       });
   }, []);
 
+  const genreNames = categories.map((c) => c.name);
+
   return (
     <>
       <Head>
@@ -54,7 +53,12 @@ export default function Events() {
           content="Browse upcoming events and book your tickets"
         />
       </Head>
-      <Box backgroundColor="$white" minHeight="$full" role="main" accessibilityLabel="Events page">
+      <Box
+        backgroundColor="$white"
+        minHeight="$full"
+        role="main"
+        accessibilityLabel="Events page"
+      >
         {error ? (
           <Box
             flex={1}
@@ -63,7 +67,9 @@ export default function Events() {
             height={600}
             accessibilityRole="alert"
           >
-            <Text color="$red500" accessibilityRole="alert">{error}</Text>
+            <Text color="$red500" accessibilityRole="alert">
+              {error}
+            </Text>
           </Box>
         ) : loading ? (
           <Box gap="$16">
@@ -80,14 +86,19 @@ export default function Events() {
             <EventCategories
               categories={categories}
               onCategoryPress={(category) =>
-                router.push(`/events/category/${encodeURIComponent(category.name)}`)
+                router.push(
+                  `/events/category/${encodeURIComponent(category.name)}`,
+                )
               }
             />
             <ArtistCarousel
               artists={artists}
               onArtistPress={(artist) => router.push(`/artists/${artist.id}`)}
             />
-            <div></div>
+            <AllEvents
+              genres={genreNames}
+              onEventPress={(event) => router.push(`/events/${event.id}`)}
+            />
           </Box>
         )}
       </Box>

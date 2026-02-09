@@ -3,6 +3,7 @@
     "strictNullChecks": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
+      "@tickety/app/*": ["./packages/app/*"],
       "app/*": ["./packages/app/*"]
     }
   },

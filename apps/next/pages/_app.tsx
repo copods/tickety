@@ -1,6 +1,7 @@
 import 'raf/polyfill'
 
 import { Provider } from '@tickety/app/provider'
+import { PageLayout } from '@tickety/app/layouts'
 import Head from 'next/head'
 import React from 'react'
 import type { SolitoAppProps } from 'solito'
@@ -29,7 +30,9 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
         />
       </Head>
       <Provider>
-        <Component {...pageProps} />
+        <PageLayout>
+          <Component {...pageProps} />
+        </PageLayout>
       </Provider>
     </>
   )

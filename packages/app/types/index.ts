@@ -38,6 +38,28 @@ export interface ArtistDetail extends Artist {
   upcomingShows: number;
 }
 
+
+// ── Filter & Pagination Types ────────────────────────────────
+export type SortByOption =
+  | "popularity"
+  | "price_low_high"
+  | "price_high_low"
+  | "date"
+  | "distance";
+
+export interface EventFilters {
+  sortBy?: SortByOption;
+  genres?: string[];
+}
+
+export interface PaginatedEventsResponse {
+  events: EventDetail[];
+  total: number;
+  page: number;
+  limit: number;
+  hasMore: boolean;
+}
+
 // ── Component Props ──────────────────────────────────────────
 export interface EventCarouselProps {
   data: CarouselEvent[];
@@ -52,4 +74,18 @@ export interface ArtistCarouselProps {
 export interface EventCategoriesProps {
   categories: EventCategory[];
   onCategoryPress?: (category: EventCategory) => void;
+}
+
+export interface AllEventsProps {
+  genres: string[];
+  onEventPress?: (event: CarouselEvent) => void;
+}
+
+export interface FilterModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onApply: (filters: EventFilters) => void;
+  genres: string[];
+  currentFilters: EventFilters;
+  useDarkTheme: boolean;
 }

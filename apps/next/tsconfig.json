@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "paths":{"@gluestack/app/*":["../../packages/app/screens/*"]},
+    "paths": {"@tickety/app/*": ["../../packages/app/*"]}
   },
   "include": ["next-env.d.ts", "app-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
