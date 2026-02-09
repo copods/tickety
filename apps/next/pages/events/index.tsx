@@ -55,7 +55,6 @@ export default function Events() {
       </Head>
       <Box
         backgroundColor="$white"
-        minHeight="$full"
         role="main"
         accessibilityLabel="Events page"
       >

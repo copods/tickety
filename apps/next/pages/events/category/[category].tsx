@@ -72,7 +72,7 @@ export default function CategoryPage() {
           content={`Browse ${categoryName} events and book your tickets`}
         />
       </Head>
-      <Box backgroundColor="$white" minHeight="$full">
+      <Box backgroundColor="$white">
         <Box gap="$10">
           {/* Event Carousel - max 5 slides */}
           {carouselEvents.length > 0 ? (

@@ -15,7 +15,7 @@ export const ArtistDetailSkeleton = () => {
   const isMobile = isMounted ? width < 768 : false;
 
   return (
-    <Box backgroundColor="$white" minHeight="$full" accessible={true} accessibilityRole="progressbar" accessibilityLabel="Loading artist details">
+    <Box backgroundColor="$white" accessible={true} accessibilityRole="progressbar" accessibilityLabel="Loading artist details">
       {/* Back button area */}
       <Box px="$6" pt="$6">
         <Skeleton width={70} height={28} borderRadius={4} />
