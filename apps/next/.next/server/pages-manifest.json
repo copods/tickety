@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/events": "pages/events.js",
-  "/api/artists": "pages/api/artists.js",
   "/api/categories": "pages/api/categories.js",
+  "/api/artists": "pages/api/artists.js",
   "/api/events": "pages/api/events.js"
 }

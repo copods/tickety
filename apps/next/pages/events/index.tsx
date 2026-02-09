@@ -70,26 +70,14 @@ export default function Events() {
           >
             <Text color="$red500" accessibilityRole="alert">{error}</Text>
           </Box>
-        ) : loading ? (
-          <Box gap="$16">
-            <EventCarouselSkeleton />
-            <EventCategoriesSkeleton />
-            <ArtistCarouselSkeleton />
-          </Box>
-        ) : loading ? (
-          <Box gap="$16">
-            <EventCarouselSkeleton />
-            <EventCategoriesSkeleton />
-            <ArtistCarouselSkeleton />
-          </Box>
-        ) : loading ? (
+        ): loading ? (
           <Box gap="$16">
             <EventCarouselSkeleton />
             <EventCategoriesSkeleton />
             <ArtistCarouselSkeleton />
           </Box>
         ) : (
-          <Box>
+          <Box gap="$0">
             <Navbar />
             <Box gap="$16">
             <EventCarousel
