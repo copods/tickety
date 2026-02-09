@@ -39,16 +39,15 @@ export const FilterModal = ({
   currentFilters,
   useDarkTheme,
 }: FilterModalProps) => {
-  const isWeb = Platform.OS === "web";
   const { width } = useWindowDimensions();
   const isMobile = width < 768;
 
   const [activeTab, setActiveTab] = useState<TabId>("sortBy");
   const [selectedSort, setSelectedSort] = useState<SortByOption | undefined>(
-    currentFilters.sortBy
+    currentFilters.sortBy,
   );
   const [selectedGenres, setSelectedGenres] = useState<string[]>(
-    currentFilters.genres || []
+    currentFilters.genres || [],
   );
 
   const theme = {
@@ -74,7 +73,7 @@ export const FilterModal = ({
 
   const toggleGenre = (genre: string) => {
     setSelectedGenres((prev) =>
-      prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
+      prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre],
     );
   };
 
@@ -137,9 +136,9 @@ export const FilterModal = ({
                     accessibilityRole="tab"
                     accessibilityState={{ selected: isActive }}
                     accessibilityLabel={`${label} filter tab`}
-                    style={{
-                      cursor: isWeb ? "pointer" : "default",
-                    }}
+                    style={Platform.select({
+                      web: { cursor: "pointer" } as any,
+                    })}
                   >
                     <Box
                       px="$4"
@@ -186,9 +185,9 @@ export const FilterModal = ({
                           accessibilityRole="radio"
                           accessibilityState={{ checked: isSelected }}
                           accessibilityLabel={option.label}
-                          style={{
-                            cursor: isWeb ? "pointer" : "default",
-                          }}
+                          style={Platform.select({
+                            web: { cursor: "pointer" } as any,
+                          })}
                         >
                           <HStack space="md" alignItems="center">
                             <Box
@@ -236,9 +235,9 @@ export const FilterModal = ({
                           accessibilityRole="checkbox"
                           accessibilityState={{ checked: isChecked }}
                           accessibilityLabel={genre}
-                          style={{
-                            cursor: isWeb ? "pointer" : "default",
-                          }}
+                          style={Platform.select({
+                            web: { cursor: "pointer" } as any,
+                          })}
                         >
                           <HStack space="md" alignItems="center">
                             <Box
@@ -258,9 +257,7 @@ export const FilterModal = ({
                               {isChecked && (
                                 <Check
                                   size={14}
-                                  color={
-                                    useDarkTheme ? "#000000" : "#ffffff"
-                                  }
+                                  color={useDarkTheme ? "#000000" : "#ffffff"}
                                   strokeWidth={3}
                                 />
                               )}
@@ -296,7 +293,7 @@ export const FilterModal = ({
             onPress={handleClear}
             accessibilityRole="button"
             accessibilityLabel="Clear all filters"
-            style={{ cursor: isWeb ? "pointer" : "default" }}
+            style={Platform.select({ web: { cursor: "pointer" } as any })}
           >
             <Text
               fontSize="$md"
