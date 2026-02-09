@@ -3,6 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "/": "pages/index.js",
   "/events/category/[category]": "pages/events/category/[category].js",
   "/api/events": "pages/api/events.js",
@@ -15,4 +16,10 @@
   "/artists/[id]": "pages/artists/[id].js",
   "/events/category/[category]": "pages/events/category/[category].js"
 >>>>>>> 373cab1 (skelton-added)
+=======
+  "/events": "pages/events.js",
+  "/api/artists": "pages/api/artists.js",
+  "/api/categories": "pages/api/categories.js",
+  "/api/events": "pages/api/events.js"
+>>>>>>> 684aa0d (updates)
 }
