@@ -46,7 +46,9 @@ export default function EventPage() {
         backgroundColor="$white"
         accessibilityRole="alert"
       >
-        <Text color="$red500" accessibilityRole="alert">{error || "Event not found"}</Text>
+        <Text color="$red500" accessibilityRole="alert">
+          {error || "Event not found"}
+        </Text>
       </Box>
     );
   }
@@ -75,29 +77,6 @@ export default function EventPage() {
             backgroundColor="rgba(0,0,0,0.3)"
           />
           {/* Back button */}
-          <Box position="absolute" top="$6" left="$6" zIndex={2}>
-            <Pressable
-              onPress={() => router.back()}
-              accessibilityRole="button"
-              accessibilityLabel="Go back to previous page"
-              style={({ pressed }) => ({
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: pressed
-                  ? "rgba(0,0,0,0.95)"
-                  : "rgba(0,0,0,0.6)",
-                borderRadius: 24,
-                paddingHorizontal: 14,
-                paddingVertical: 8,
-                cursor: isWeb ? "pointer" : "default",
-              })}
-            >
-              <ChevronLeft size={18} color="white" strokeWidth={2} />
-              <Text color="$white" fontSize="$sm" fontWeight="$medium" ml="$1">
-                Back
-              </Text>
-            </Pressable>
-          </Box>
         </Box>
 
         {/* Content */}
