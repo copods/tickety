@@ -10,6 +10,7 @@
   "/events": "pages/events.js"
 =======
   "/events": "pages/events.js",
+<<<<<<< HEAD
   "/api/artists": "pages/api/artists.js",
   "/api/categories": "pages/api/categories.js",
   "/api/events": "pages/api/events.js",
@@ -22,4 +23,9 @@
   "/api/categories": "pages/api/categories.js",
   "/api/events": "pages/api/events.js"
 >>>>>>> 684aa0d (updates)
+=======
+  "/api/events": "pages/api/events.js",
+  "/api/artists": "pages/api/artists.js",
+  "/api/categories": "pages/api/categories.js"
+>>>>>>> 1cebf52 (feat: update)
 }
