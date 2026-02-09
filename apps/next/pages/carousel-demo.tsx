@@ -41,7 +41,7 @@ export default function CarouselDemo() {
             <Head>
                 <title>Event Carousel Demo</title>
             </Head>
-            <Box backgroundColor="$white" minHeight="$full">
+            <Box backgroundColor="$white">
                 <EventCarousel data={mockData} />
             </Box>
         </>

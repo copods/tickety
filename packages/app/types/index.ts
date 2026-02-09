@@ -13,9 +13,21 @@ export interface CarouselEvent {
 export interface EventDetail extends CarouselEvent {
   description: string;
   category: string;
+  categories: string[];
   organizer: string;
   ageRestriction: string;
   artistId?: string;
+  artistName?: string;
+  artistImage?: string;
+  language: string;
+  duration: string;
+  ticketsNeededFor: string;
+  entryAllowedFor: string;
+  seatingArrangement: string;
+  kidFriendly: boolean;
+  petFriendly: boolean;
+  location: string;
+  venueAddress: string;
 }
 
 export interface EventCategory {

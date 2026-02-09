@@ -16,9 +16,22 @@ export const mockEvents: EventDetail[] = [
     description:
       "Experience the mesmerizing voice of Dr. Satinder Sartaaj live as he takes you on a Heritage India Tour. An evening filled with soulful Sufi music, poetry, and a celebration of Indian heritage.",
     category: "Music",
+    categories: ["Music", "Performances"],
     organizer: "Heritage India Events",
     ageRestriction: "All Ages",
     artistId: "1",
+    artistName: "Dr. Satinder Sartaaj",
+    artistImage:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi, Punjabi",
+    duration: "3 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Jawaharlal Nehru Stadium, Lodhi Road, New Delhi - 110003",
   },
   {
     id: "2",
@@ -34,9 +47,23 @@ export const mockEvents: EventDetail[] = [
     description:
       "A grand celebration of Bollywood music featuring top playback singers and live orchestras performing your favourite hits from classic to contemporary Bollywood.",
     category: "Music",
+    categories: ["Music", "Fests & Fairs"],
     organizer: "Bollywood Live Entertainment",
     ageRestriction: "All Ages",
     artistId: "7",
+    artistName: "Neha Kakkar",
+    artistImage:
+      "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi",
+    duration: "4 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "Indira Gandhi Indoor Stadium, ITO, New Delhi - 110002",
   },
   {
     id: "3",
@@ -52,9 +79,22 @@ export const mockEvents: EventDetail[] = [
     description:
       "Arijit Singh performs his greatest hits live — from Tum Hi Ho to Kesariya. An unforgettable night of soulful melodies under the stars.",
     category: "Music",
+    categories: ["Music", "Nightlife"],
     organizer: "Live Nation India",
     ageRestriction: "All Ages",
     artistId: "1",
+    artistName: "Arijit Singh",
+    artistImage:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi",
+    duration: "3.5 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Mumbai",
+    venueAddress: "DY Patil Stadium, Nerul, Navi Mumbai - 400706",
   },
   {
     id: "4",
@@ -70,9 +110,23 @@ export const mockEvents: EventDetail[] = [
     description:
       "An intimate acoustic session with Prateek Kuhad performing fan favourites and tracks from his upcoming album in a cozy setting.",
     category: "Music",
+    categories: ["Music", "Open Mics"],
     organizer: "The Piano Man",
     ageRestriction: "All Ages",
     artistId: "3",
+    artistName: "Prateek Kuhad",
+    artistImage:
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi, English",
+    duration: "2.5 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "The Piano Man Jazz Club, B-6/7, Safdarjung Enclave, New Delhi - 110029",
   },
   {
     id: "5",
@@ -88,9 +142,23 @@ export const mockEvents: EventDetail[] = [
     description:
       "Two of India's hottest indie acts share the stage for a high-energy double headline show blending electronic and folk vibes.",
     category: "Music",
+    categories: ["Music", "Performances"],
     organizer: "Paytm Insider",
     ageRestriction: "All Ages",
     artistId: "6",
+    artistName: "Ritviz",
+    artistImage:
+      "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi, English",
+    duration: "4 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Bangalore",
+    venueAddress:
+      "Phoenix Marketcity, Whitefield Rd, Bangalore - 560048",
   },
 
   // ── Nightlife ──────────────────────────────────────────────
@@ -108,13 +176,24 @@ export const mockEvents: EventDetail[] = [
     description:
       "Sunburn Arena presents the internationally acclaimed DJ and producer Alan Walker live in Delhi. Get ready for an electrifying evening of EDM with hits like Faded, Alone, and Darkside.",
     category: "Nightlife",
+    categories: ["Nightlife", "Music"],
     organizer: "Sunburn",
     ageRestriction: "16+",
+    language: "English",
+    duration: "6 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "16+ Only",
+    seatingArrangement: "Standing / Open Ground",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Gurgaon",
+    venueAddress:
+      "Backyard Sports Club, Sector 29, Gurgaon - 122001",
   },
 
-  // ── Sports ─────────────────────────────────────────────────
+  // ── Performances ──────────────────────────────────────────
   {
-    id: "3",
+    id: "7",
     name: "Comic Con India 2026 - Delhi Edition",
     date: "Fri, 06 Mar",
     time: "11:00 AM",
@@ -127,9 +206,22 @@ export const mockEvents: EventDetail[] = [
     description:
       "India's greatest pop culture event is back! Comic Con India 2026 Delhi Edition features celebrity panels, cosplay contests, exclusive merchandise, gaming zones, and much more.",
     category: "Performances",
+    categories: ["Performances", "Expos", "Fests & Fairs"],
     organizer: "Comic Con India",
     ageRestriction: "All Ages",
     artistId: "8",
+    artistName: "Divine",
+    artistImage:
+      "https://images.unsplash.com/photo-1559386484-97dfc0e15539?auto=format&fit=crop&q=80&w=400",
+    language: "English, Hindi",
+    duration: "8 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "NSIC Exhibition Grounds, Okhla Industrial Estate, New Delhi - 110020",
   },
   {
     id: "15",
@@ -145,8 +237,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "An enchanting evening of Kathak performances by leading classical dancers showcasing the beauty and grace of this ancient art form.",
     category: "Performances",
+    categories: ["Performances", "Art Exhibitions"],
     organizer: "Spic Macay",
     ageRestriction: "All Ages",
+    language: "Hindi",
+    duration: "2.5 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Kamani Auditorium, 1 Copernicus Marg, New Delhi - 110001",
   },
 
   // ── Food & Drink ───────────────────────────────────────────
@@ -164,8 +266,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Over 100 food stalls featuring Delhi's most iconic street food alongside craft beverages, live music, and cooking demos.",
     category: "Food & Drink",
+    categories: ["Food & Drink", "Fests & Fairs"],
     organizer: "Foodholic Events",
     ageRestriction: "All Ages",
+    language: "Hindi, English",
+    duration: "6 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming",
+    kidFriendly: true,
+    petFriendly: true,
+    location: "Delhi",
+    venueAddress: "JLN Stadium Grounds, Lodhi Road, New Delhi - 110003",
   },
   {
     id: "17",
@@ -181,8 +293,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Sample 30+ craft beers from India's best microbreweries paired with gourmet burgers from top chefs. Live DJ sets all afternoon.",
     category: "Food & Drink",
+    categories: ["Food & Drink", "Nightlife"],
     organizer: "BeerCraft India",
     ageRestriction: "21+",
+    language: "English, Hindi",
+    duration: "5 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "21+ Only",
+    seatingArrangement: "Free Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Gurgaon",
+    venueAddress: "Episode, Sector 29, Gurgaon - 122001",
   },
 
   // ── Fests & Fairs ──────────────────────────────────────────
@@ -200,8 +322,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Celebrate Holi with music, colour, and dance! Featuring DJ sets, rain dance, organic colours, and Bollywood performances.",
     category: "Fests & Fairs",
+    categories: ["Fests & Fairs", "Music", "Nightlife"],
     organizer: "Color Carnival India",
     ageRestriction: "All Ages",
+    language: "Hindi",
+    duration: "8 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Standing / Open Ground",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Asiad Village Complex, Siri Fort, New Delhi - 110049",
   },
   {
     id: "19",
@@ -217,8 +349,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Browse handcrafted goods, vintage finds, indie fashion, and artisanal food at Delhi's favourite weekend bazaar.",
     category: "Fests & Fairs",
+    categories: ["Fests & Fairs", "Art Exhibitions"],
     organizer: "The Lil Flea",
     ageRestriction: "All Ages",
+    language: "Hindi, English",
+    duration: "7 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming",
+    kidFriendly: true,
+    petFriendly: true,
+    location: "Delhi",
+    venueAddress: "Dilli Haat, INA, Aurobindo Marg, New Delhi - 110023",
   },
 
   // ── Social Mixer ───────────────────────────────────────────
@@ -236,8 +378,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Meet new people through fun icebreakers, speed networking rounds, and casual conversations over food and drinks.",
     category: "Social Mixer",
+    categories: ["Social Mixer", "Nightlife"],
     organizer: "Meetup Delhi",
     ageRestriction: "18+",
+    language: "English, Hindi",
+    duration: "3 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "18+ Only",
+    seatingArrangement: "Free Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Social, 9-A & 12, Hauz Khas Village, New Delhi - 110016",
   },
 
   // ── Screenings ─────────────────────────────────────────────
@@ -255,8 +407,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Watch the iconic Dil Chahta Hai under the stars with bean bags, popcorn, and a giant outdoor screen in the beautiful Sunder Nursery.",
     category: "Screenings",
+    categories: ["Screenings", "Social Mixer"],
     organizer: "Sunset Cinema Club",
     ageRestriction: "All Ages",
+    language: "Hindi",
+    duration: "3 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Seating (Bean Bags)",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Sunder Nursery, Nizamuddin, New Delhi - 110013",
   },
   {
     id: "22",
@@ -272,8 +434,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "Back-to-back screenings of Spirited Away, My Neighbor Totoro, and Howl's Moving Castle on the big screen with Japanese snacks.",
     category: "Screenings",
+    categories: ["Screenings", "Art Exhibitions"],
     organizer: "Anime Club India",
     ageRestriction: "All Ages",
+    language: "Japanese (English Subtitles)",
+    duration: "6 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "PVR Director's Cut, Ambience Mall, Vasant Kunj, New Delhi - 110070",
   },
 
   // ── Fitness ────────────────────────────────────────────────
@@ -291,8 +464,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Start your Sunday with a rejuvenating yoga session at India Gate. Open to all levels. Mats and refreshments provided.",
     category: "Fitness",
+    categories: ["Fitness"],
     organizer: "FitIndia Movement",
     ageRestriction: "All Ages",
+    language: "Hindi, English",
+    duration: "2 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Open Ground (Mats Provided)",
+    kidFriendly: true,
+    petFriendly: true,
+    location: "Delhi",
+    venueAddress: "India Gate Lawns, Rajpath, New Delhi - 110001",
   },
   {
     id: "24",
@@ -308,8 +491,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "Watch elite athletes compete in gruelling CrossFit workouts, or sign up for the amateur category and test your own limits.",
     category: "Fitness",
+    categories: ["Fitness", "Sports"],
     organizer: "CrossFit India",
     ageRestriction: "16+",
+    language: "English, Hindi",
+    duration: "8 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "16+ Only",
+    seatingArrangement: "Free Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "Thyagaraj Sports Complex, INA Colony, New Delhi - 110023",
   },
 
   // ── Conferences ────────────────────────────────────────────
@@ -327,8 +521,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "India's premier tech conference featuring keynotes on AI, blockchain, and startups. Network with industry leaders and investors.",
     category: "Conferences",
+    categories: ["Conferences", "Expos"],
     organizer: "TechSpark Events",
     ageRestriction: "All Ages",
+    language: "English",
+    duration: "10 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Greater Noida",
+    venueAddress:
+      "India Expo Centre & Mart, Plot 25-27, Knowledge Park II, Greater Noida - 201306",
   },
 
   // ── Expos ──────────────────────────────────────────────────
@@ -346,8 +551,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "Experience the future of mobility with concept cars, electric vehicles, and superbikes from leading manufacturers around the world.",
     category: "Expos",
+    categories: ["Expos", "Conferences"],
     organizer: "SIAM",
     ageRestriction: "All Ages",
+    language: "English, Hindi",
+    duration: "8 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Greater Noida",
+    venueAddress:
+      "India Expo Mart, Plot 25-27, Knowledge Park II, Greater Noida - 201306",
   },
 
   // ── Open Mics ──────────────────────────────────────────────
@@ -365,8 +581,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "Share your poetry, stories, or music on stage. A welcoming space for first-timers and seasoned performers alike.",
     category: "Open Mics",
+    categories: ["Open Mics", "Performances"],
     organizer: "Spoke & Word Collective",
     ageRestriction: "All Ages",
+    language: "Hindi, English, Urdu",
+    duration: "2.5 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Seating",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "Stein Auditorium, India Habitat Centre, Lodhi Road, New Delhi - 110003",
   },
   {
     id: "28",
@@ -382,8 +609,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Aspiring comedians get 5 minutes each to make you laugh. Discover the next big name in Indian comedy!",
     category: "Open Mics",
+    categories: ["Open Mics", "Comedy"],
     organizer: "The Laugh Store",
     ageRestriction: "16+",
+    language: "Hindi, English",
+    duration: "2 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "16+ Only",
+    seatingArrangement: "Free Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Gurgaon",
+    venueAddress: "The Laugh Store, Sector 29, Gurgaon - 122001",
   },
 
   // ── Art Exhibitions ────────────────────────────────────────
@@ -401,8 +638,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "A guided gallery walk through works by MF Husain, SH Raza, and contemporary Indian artists. Includes complimentary art catalogue.",
     category: "Art Exhibitions",
+    categories: ["Art Exhibitions", "Performances"],
     organizer: "NGMA Delhi",
     ageRestriction: "All Ages",
+    language: "English, Hindi",
+    duration: "3 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming (Guided)",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "National Gallery of Modern Art, Jaipur House, India Gate, New Delhi - 110003",
   },
 
   // ── Pets ───────────────────────────────────────────────────
@@ -420,8 +668,18 @@ export const mockEvents: EventDetail[] = [
     description:
       "Bring your furry friends for a day of pet shows, agility courses, adoption drives, vet consultations, and pet-friendly food stalls.",
     category: "Pets",
+    categories: ["Pets", "Fests & Fairs"],
     organizer: "PetFed India",
     ageRestriction: "All Ages",
+    language: "English, Hindi",
+    duration: "6 hours",
+    ticketsNeededFor: "Per Person (Pets Free)",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Free Roaming",
+    kidFriendly: true,
+    petFriendly: true,
+    location: "Gurgaon",
+    venueAddress: "Leisure Valley Park, Sector 29, Gurgaon - 122001",
   },
 
   // ── Sports ───────────────────────────────────────────────────
@@ -431,7 +689,7 @@ export const mockEvents: EventDetail[] = [
     date: "Sun, 23 Mar",
     time: "5:30 AM",
     venue: "Jawaharlal Nehru Stadium, Delhi",
-    price: "₹1,200 onwards",
+    price: "\u20B91,200 onwards",
     image:
       "https://images.unsplash.com/photo-1546483875-ad9014c88eba?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
@@ -439,8 +697,19 @@ export const mockEvents: EventDetail[] = [
     description:
       "Join thousands of runners for a high-energy half marathon featuring 21K, 10K, and 5K categories. Includes race kit, medal, refreshments, and medical support.",
     category: "Sports",
+    categories: ["Sports", "Fitness"],
     organizer: "Delhi Marathon Foundation",
     ageRestriction: "All Ages",
+    language: "English, Hindi",
+    duration: "6 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "Everyone",
+    seatingArrangement: "Open Ground",
+    kidFriendly: true,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress:
+      "Jawaharlal Nehru Stadium, Lodhi Road, New Delhi - 110003",
   },
 
   // ── Comedy ───────────────────────────────────────────────────
@@ -450,7 +719,7 @@ export const mockEvents: EventDetail[] = [
     date: "Sat, 29 Mar",
     time: "8:00 PM",
     venue: "Siri Fort Auditorium, Delhi",
-    price: "₹799 onwards",
+    price: "\u20B9799 onwards",
     image:
       "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=1000",
     bannerImage:
@@ -458,7 +727,20 @@ export const mockEvents: EventDetail[] = [
     description:
       "A laughter-packed evening with Abhishek Upmanyu as he brings relatable stories, sharp observations, and brand-new jokes to the stage.",
     category: "Comedy",
+    categories: ["Comedy", "Performances"],
     organizer: "Comicstaan Live",
     ageRestriction: "16+",
+    artistName: "Abhishek Upmanyu",
+    artistImage:
+      "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=400",
+    language: "Hindi",
+    duration: "2 hours",
+    ticketsNeededFor: "Per Person",
+    entryAllowedFor: "16+ Only",
+    seatingArrangement: "Assigned Seating",
+    kidFriendly: false,
+    petFriendly: false,
+    location: "Delhi",
+    venueAddress: "Siri Fort Auditorium, August Kranti Marg, New Delhi - 110049",
   },
 ];

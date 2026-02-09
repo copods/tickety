@@ -26,7 +26,9 @@ export function PageLayout({ children }: PageLayoutProps) {
         contentContainerStyle={{ flexGrow: 1 }}
         showsVerticalScrollIndicator={true}
       >
-        {children}
+        <Box flex={1}>
+          {children}
+        </Box>
         <Footer />
       </ScrollView>
     </Box>

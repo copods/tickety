@@ -70,7 +70,7 @@ export default function ArtistPage() {
         <title>{artist.name} - Tickety</title>
         <meta name="description" content={artist.bio} />
       </Head>
-      <Box backgroundColor="$white" minHeight="$full">
+      <Box backgroundColor="$white">
         {/* ── First Fold: Artist Info ── */}
         <Box
           px={isMobile ? "$5" : "$20"}
