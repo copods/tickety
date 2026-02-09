@@ -62,11 +62,7 @@ export const ArtistCarousel = ({
       accessibilityLabel="Artists in your District"
     >
       <HStack justifyContent="space-between" alignItems="center">
-<<<<<<< HEAD
         <Heading fontSize="$3xl" color="$black" fontWeight="$bold">
-=======
-        <Text fontSize="$3xl" color="$black" fontWeight="$bold">
->>>>>>> ead0c7c (Added event categories carousle and detail page)
           Artists in your District
         </Heading>
 
