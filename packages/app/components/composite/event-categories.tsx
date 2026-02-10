@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Text, Heading } from "../ui";
+import { LinearGradient } from "expo-linear-gradient";
 
 import {
   Pressable,
@@ -81,8 +82,9 @@ export const EventCategories = ({
   if (!categories?.length) return null;
 
   const theme = {
-    cardBgStart: useDarkTheme ? "$backgroundDark900" : "#fffcf7",
-    cardBgEnd: useDarkTheme ? "$backgroundDark800" : "#edd63e",
+    cardBg: useDarkTheme ? "#050816" : "#fffcf7",
+    cardGradientStart: useDarkTheme ? "#1f2933" : "#fff7ed",
+    cardGradientEnd: useDarkTheme ? "#4b5563" : "#fed7aa",
     text: useDarkTheme ? "$textDark50" : "#6b5744",
     iconColor: useDarkTheme ? "#fbbf24" : "#c9a870",
     borderColor: useDarkTheme ? "$borderDark700" : "#e8dcc8",
@@ -109,9 +111,7 @@ export const EventCategories = ({
             height={cardHeight}
             sx={{
               _web: {
-                background: useDarkTheme
-                  ? theme.cardBgStart
-                  : `linear-gradient(180deg, ${theme.cardBgStart} 0%, ${theme.cardBgEnd} 100%)`,
+                background: `linear-gradient(180deg, ${theme.cardGradientStart} 0%, ${theme.cardGradientEnd} 100%)`,
                 boxShadow: useDarkTheme
                   ? "0 4px 12px rgba(0, 0, 0, 0.5)"
                   : "0 3px 10px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03)",
@@ -129,53 +129,60 @@ export const EventCategories = ({
                 },
               },
             }}
-            bg={theme.cardBgStart}
+            bg={theme.cardBg}
             borderWidth={1}
             borderColor={theme.borderColor}
             opacity={pressed ? 0.85 : 1}
           >
-            <Box
-              height="100%"
-              px="$3"
-              pt="$3.5"
-              pb="$4"
-              justifyContent="space-between"
-              alignItems="center"
+            <LinearGradient
+              colors={[theme.cardGradientStart, theme.cardGradientEnd]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={{ flex: 1 }}
             >
-              {/* Text at top */}
-              <Text
-                fontSize={16}
-                fontWeight="$bold"
-                color={theme.text}
-                textAlign="center"
-                numberOfLines={2}
-                textTransform="uppercase"
-                sx={{
-                  _web: {
-                    fontSize: 12,
-                    fontWeight: "700",
-                  },
-                }}
-              >
-                {category.name}
-              </Text>
-
-              {/* Icon in center/bottom */}
               <Box
-                flex={1}
-                justifyContent="center"
+                height="100%"
+                px="$3"
+                pt="$3.5"
+                pb="$4"
+                justifyContent="space-between"
                 alignItems="center"
-                pt="$1"
               >
-                <Icon
-                  size={isMobile ? 64 : 80}
-                  color={theme.iconColor}
-                  strokeWidth={1}
-                  fill={useDarkTheme ? "none" : theme.iconColor}
-                  opacity={0.85}
-                />
+                {/* Text at top */}
+                <Text
+                  fontSize={16}
+                  fontWeight="$bold"
+                  color={theme.text}
+                  textAlign="center"
+                  numberOfLines={2}
+                  textTransform="uppercase"
+                  sx={{
+                    _web: {
+                      fontSize: 12,
+                      fontWeight: "700",
+                    },
+                  }}
+                >
+                  {category.name}
+                </Text>
+
+                {/* Icon in center/bottom */}
+                <Box
+                  flex={1}
+                  justifyContent="center"
+                  alignItems="center"
+                  pt="$1"
+                >
+                  <Icon
+                    size={isMobile ? 64 : 80}
+                    color={theme.iconColor}
+                    strokeWidth={1}
+                    fill={useDarkTheme ? "none" : theme.iconColor}
+                    opacity={0.85}
+                  />
+                </Box>
               </Box>
-            </Box>
+            </LinearGradient>
           </Box>
         )}
       </Pressable>
@@ -194,8 +201,13 @@ export const EventCategories = ({
       accessibilityRole="summary"
       accessibilityLabel="Explore event categories"
     >
-      <Heading fontSize="$3xl" fontWeight="$bold">
-        Explore Events
+      <Heading
+        fontSize="$4xl"
+        fontWeight="$extrabold"
+        letterSpacing={0.5}
+        color={useDarkTheme ? "$white" : "$black"}
+      >
+        Explore events
       </Heading>
 
       {/* MOBILE: 2 ROW HORIZONTAL SCROLL */}

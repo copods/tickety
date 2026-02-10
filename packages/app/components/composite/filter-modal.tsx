@@ -5,6 +5,9 @@ import {
   ScrollView,
   Platform,
   useWindowDimensions,
+  Modal as RNModal,
+  StyleSheet,
+  PanResponder,
 } from "react-native";
 import {
   Modal,
@@ -90,6 +93,287 @@ export const FilterModal = ({
     onClose();
   };
 
+  // ── Native Mobile: Bottom Sheet / Swipe-up style ────────────────
+  if (!isWeb && isMobile) {
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder: (_, gestureState) =>
+        Math.abs(gestureState.dy) > 10,
+      onPanResponderRelease: (_, gestureState) => {
+        if (gestureState.dy < -25) {
+          // Swipe up: expand towards 90%
+          setIsExpanded(true);
+        } else if (gestureState.dy > 25) {
+          // Swipe down: collapse or close if already collapsed
+          if (isExpanded) {
+            setIsExpanded(false);
+          } else {
+            onClose();
+          }
+        }
+      },
+    });
+
+    return (
+      <RNModal
+        transparent
+        visible={isOpen}
+        animationType="slide"
+        onRequestClose={onClose}
+      >
+        <Box
+          flex={1}
+          justifyContent="flex-end"
+        >
+          {/* Backdrop tap to close */}
+          <Pressable
+            style={StyleSheet.absoluteFillObject}
+            accessibilityRole="button"
+            accessibilityLabel="Close filters"
+            onPress={onClose}
+          />
+
+          {/* Bottom sheet container */}
+          <Box
+            bg={theme.bg}
+            borderTopLeftRadius={24}
+            borderTopRightRadius={24}
+            height={isExpanded ? "90%" : "60%"}
+            pt="$4"
+            pb="$5"
+          >
+          {/* Drag handle indicator */}
+          <Box
+            alignItems="center"
+            mb="$3"
+            {...panResponder.panHandlers}
+          >
+            <Box
+              width={40}
+              height={4}
+              borderRadius={999}
+              bg={useDarkTheme ? "#4b5563" : "#d1d5db"}
+            />
+          </Box>
+
+          {/* Header */}
+          <HStack
+            px="$5"
+            pb="$3"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Heading size="xl" fontWeight="$bold" color={theme.text}>
+              Filter by
+            </Heading>
+            <Pressable
+              onPress={onClose}
+              accessibilityRole="button"
+              accessibilityLabel="Close filters"
+            >
+              <X size={22} color={theme.subText} />
+            </Pressable>
+          </HStack>
+
+          {/* Content area */}
+          <HStack flex={1} minHeight={320}>
+            {/* Left sidebar tabs */}
+            <VStack width={110} bg={theme.bg} pt="$2">
+              {(["sortBy", "genre"] as TabId[]).map((tab) => {
+                const isActive = activeTab === tab;
+                const label = tab === "sortBy" ? "Sort By" : "Genre";
+                return (
+                  <Pressable
+                    key={tab}
+                    onPress={() => setActiveTab(tab)}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected: isActive }}
+                    accessibilityLabel={`${label} filter tab`}
+                  >
+                    <Box
+                      px="$4"
+                      py="$3.5"
+                      bg={isActive ? theme.tabActiveBg : "transparent"}
+                      borderLeftWidth={isActive ? 3 : 0}
+                      borderLeftColor={
+                        isActive
+                          ? useDarkTheme
+                            ? "#8B5CF6"
+                            : "#7C3AED"
+                          : "transparent"
+                      }
+                    >
+                      <Text
+                        fontSize="$sm"
+                        fontWeight={isActive ? "$bold" : "$medium"}
+                        color={isActive ? theme.tabActiveText : theme.tabText}
+                      >
+                        {label}
+                      </Text>
+                    </Box>
+                  </Pressable>
+                );
+              })}
+            </VStack>
+
+            {/* Right content area */}
+            <Box flex={1} bg={theme.contentBg}>
+              <ScrollView
+                contentContainerStyle={{
+                  padding: 20,
+                }}
+                showsVerticalScrollIndicator={false}
+              >
+                {activeTab === "sortBy" ? (
+                  <VStack space="xl">
+                    {SORT_OPTIONS.map((option) => {
+                      const isSelected = selectedSort === option.value;
+                      return (
+                        <Pressable
+                          key={option.value}
+                          onPress={() => setSelectedSort(option.value)}
+                          accessibilityRole="radio"
+                          accessibilityState={{ checked: isSelected }}
+                          accessibilityLabel={option.label}
+                        >
+                          <HStack space="md" alignItems="center">
+                            <Box
+                              width={24}
+                              height={24}
+                              borderRadius={12}
+                              borderWidth={2}
+                              borderColor={
+                                isSelected
+                                  ? theme.radioColor
+                                  : theme.radioBorder
+                              }
+                              alignItems="center"
+                              justifyContent="center"
+                            >
+                              {isSelected && (
+                                <Box
+                                  width={12}
+                                  height={12}
+                                  borderRadius={6}
+                                  bg={theme.radioColor}
+                                />
+                              )}
+                            </Box>
+                            <Text
+                              fontSize="$md"
+                              fontWeight={isSelected ? "$bold" : "$normal"}
+                              color={theme.text}
+                            >
+                              {option.label}
+                            </Text>
+                          </HStack>
+                        </Pressable>
+                      );
+                    })}
+                  </VStack>
+                ) : (
+                  <VStack space="lg">
+                    {genres.map((genre) => {
+                      const isChecked = selectedGenres.includes(genre);
+                      return (
+                        <Pressable
+                          key={genre}
+                          onPress={() => toggleGenre(genre)}
+                          accessibilityRole="checkbox"
+                          accessibilityState={{ checked: isChecked }}
+                          accessibilityLabel={genre}
+                        >
+                          <HStack space="md" alignItems="center">
+                            <Box
+                              width={24}
+                              height={24}
+                              borderRadius={6}
+                              borderWidth={2}
+                              borderColor={
+                                isChecked
+                                  ? theme.checkboxBg
+                                  : theme.checkboxBorder
+                              }
+                              bg={isChecked ? theme.checkboxBg : "transparent"}
+                              alignItems="center"
+                              justifyContent="center"
+                            >
+                              {isChecked && (
+                                <Check
+                                  size={14}
+                                  color={
+                                    useDarkTheme ? "#000000" : "#ffffff"
+                                  }
+                                  strokeWidth={3}
+                                />
+                              )}
+                            </Box>
+                            <Text
+                              fontSize="$md"
+                              fontWeight={isChecked ? "$bold" : "$normal"}
+                              color={theme.text}
+                            >
+                              {genre}
+                            </Text>
+                          </HStack>
+                        </Pressable>
+                      );
+                    })}
+                  </VStack>
+                )}
+              </ScrollView>
+            </Box>
+          </HStack>
+
+          {/* Footer */}
+          <HStack
+            px="$5"
+            pt="$3"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Pressable
+              onPress={handleClear}
+              accessibilityRole="button"
+              accessibilityLabel="Clear all filters"
+            >
+              <Text
+                fontSize="$md"
+                fontWeight="$semibold"
+                color={theme.clearText}
+                textDecorationLine="underline"
+              >
+                Clear filters
+              </Text>
+            </Pressable>
+
+            <Button
+              size="lg"
+              bg={theme.applyBg}
+              borderRadius="$xl"
+              onPress={handleApply}
+              accessibilityRole="button"
+              accessibilityLabel="Apply selected filters"
+              px="$10"
+              py="$3"
+            >
+              <ButtonText
+                color={theme.applyText}
+                fontWeight="$bold"
+                fontSize="$md"
+              >
+                Apply Filters
+              </ButtonText>
+            </Button>
+          </HStack>
+          </Box>
+        </Box>
+      </RNModal>
+    );
+  }
+
+  // ── Web / Desktop: Centered dialog modal ────────────────────────
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={isMobile ? "full" : "lg"}>
       <ModalBackdrop />

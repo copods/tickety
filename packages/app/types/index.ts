@@ -93,6 +93,11 @@ export interface AllEventsProps {
   onEventPress?: (event: CarouselEvent) => void;
 }
 
+// Exposed imperative handle for native infinite scrolling
+export interface AllEventsHandle {
+  loadNextPage: () => void;
+}
+
 export interface FilterModalProps {
   isOpen: boolean;
   onClose: () => void;
