@@ -5,11 +5,15 @@ import { Pressable, ScrollView, Platform, useWindowDimensions } from 'react-nati
 import { Link } from 'solito/link'
 import { Search, MapPin, User, ChevronRight } from 'lucide-react-native'
 import { NAV_ITEMS, LOCATION_DATA } from '../../mock/navigation'
+import { ALL_CITIES } from '../../mock/cities'
+import { LocationModal } from './location-modal'
 
 export function Navbar() {
     const { width } = useWindowDimensions()
     const [mounted, setMounted] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
+    const [showLocationModal, setShowLocationModal] = useState(false)
+    const [selectedCity, setSelectedCity] = useState(LOCATION_DATA.city)
 
     useEffect(() => {
         setMounted(true)
@@ -18,6 +22,22 @@ export function Navbar() {
     useEffect(() => {
         setIsDesktop(width >= 1108)
     }, [width])
+
+    useEffect(() => {
+        if (Platform.OS === 'web') {
+            const savedCity = localStorage.getItem('selectedCity')
+            if (savedCity) {
+                setSelectedCity(savedCity)
+            }
+        }
+    }, [])
+
+    const handleSelectCity = (city: string) => {
+        setSelectedCity(city)
+        if (Platform.OS === 'web') {
+            localStorage.setItem('selectedCity', city)
+        }
+    }
 
     const isWeb = Platform.OS === 'web'
     const useDarkTheme = !isWeb && !isDesktop
@@ -70,30 +90,32 @@ export function Navbar() {
                         <Text fontWeight="$extrabold" fontSize="$3xl" color={theme.text} lineHeight="$xs">
                             Tickety
                         </Text>
-                     
+
                     </VStack>
 
                     <Box h={35} w={1} bg="$coolGray200" />
 
                     {/* Location Box */}
-                    <HStack
-                        borderColor={theme.locationBorder}
-                        borderRadius="$full"
-                        px="$2"
-                        py="$1.5"
-                        alignItems="center"
-                        space="md"
-                    >
-                        <MapPin size={20} color="#7c3aed" />
-                        <VStack>
-                            <Text fontWeight="$bold" fontSize="$sm" color={theme.text} lineHeight="$xs">
-                                {LOCATION_DATA.city}
-                            </Text>
-                            <Text fontSize="$2xs" color={theme.subText}>
-                                {LOCATION_DATA.state}
-                            </Text>
-                        </VStack>
-                    </HStack>
+                    <Pressable onPress={() => setShowLocationModal(true)}>
+                        <HStack
+                            borderColor={theme.locationBorder}
+                            borderRadius="$full"
+                            px="$2"
+                            py="$1.5"
+                            alignItems="center"
+                            space="md"
+                        >
+                            <MapPin size={20} color="#7c3aed" />
+                            <VStack>
+                                <Text fontWeight="$bold" fontSize="$sm" color={theme.text} lineHeight="$xs">
+                                    {selectedCity}
+                                </Text>
+                                <Text fontSize="$2xs" color={theme.subText}>
+                                    {ALL_CITIES.find(c => c.name === selectedCity)?.state || LOCATION_DATA.state}
+                                </Text>
+                            </VStack>
+                        </HStack>
+                    </Pressable>
 
                     {/* Navigation Links */}
                     <HStack space="xl" ml="$12" alignItems="center" justifyContent='center'>
@@ -141,20 +163,22 @@ export function Navbar() {
                 >
                     {/* Row 1: Location & Profile */}
                     <HStack justifyContent="space-between" alignItems="center">
-                        <HStack alignItems="center" space="sm">
-                            <MapPin size={24} color="#7c3aed" />
-                            <VStack>
-                                <HStack alignItems="center" space="xs">
-                                    <Text fontWeight="$bold" fontSize="$lg" color={theme.text}>
-                                        {LOCATION_DATA.city}
+                        <Pressable onPress={() => setShowLocationModal(true)}>
+                            <HStack alignItems="center" space="sm">
+                                <MapPin size={24} color="#7c3aed" />
+                                <VStack>
+                                    <HStack alignItems="center" space="xs">
+                                        <Text fontWeight="$bold" fontSize="$lg" color={theme.text}>
+                                            {selectedCity}
+                                        </Text>
+                                        <ChevronRight size={18} color={theme.text} />
+                                    </HStack>
+                                    <Text fontSize="$xs" color={theme.subText}>
+                                        {ALL_CITIES.find(c => c.name === selectedCity)?.state || LOCATION_DATA.state}
                                     </Text>
-                                    <ChevronRight size={18} color={theme.text} />
-                                </HStack>
-                                <Text fontSize="$xs" color={theme.subText}>
-                                    {LOCATION_DATA.state}
-                                </Text>
-                            </VStack>
-                        </HStack>
+                                </VStack>
+                            </HStack>
+                        </Pressable>
                         <Pressable>
                             <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
                                 <User size={22} color="#888" />
@@ -222,6 +246,13 @@ export function Navbar() {
                     </ScrollView>
                 </VStack>
             )}
+
+            <LocationModal
+                isOpen={showLocationModal}
+                onClose={() => setShowLocationModal(false)}
+                currentCity={selectedCity}
+                onSelectCity={handleSelectCity}
+            />
         </Box>
     )
 }
