@@ -43,6 +43,7 @@ export const FilterModal = ({
   useDarkTheme,
 }: FilterModalProps) => {
   const { width } = useWindowDimensions();
+  const isWeb = Platform.OS === "web";
   const isMobile = width < 768;
 
   const [activeTab, setActiveTab] = useState<TabId>("sortBy");
