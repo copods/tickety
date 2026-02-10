@@ -45,6 +45,8 @@ export const FilterModal = ({
   const { width } = useWindowDimensions();
   const isWeb = Platform.OS === "web";
   const isMobile = width < 768;
+  const isWeb = Platform.OS === "web";
+  
 
   const [activeTab, setActiveTab] = useState<TabId>("sortBy");
   const [selectedSort, setSelectedSort] = useState<SortByOption | undefined>(

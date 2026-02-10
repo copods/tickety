@@ -415,7 +415,7 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
                       width="100%"
                       height={isMobile ? 260 : 320}
                       position="relative"
-                      borderRadius={isMobile ? "$lg" : "$0"}
+                      borderRadius={isMobile ? "$lg" : "$none"}
                       overflow="hidden"
                     >
                       <Image
