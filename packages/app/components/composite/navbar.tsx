@@ -7,12 +7,14 @@ import { Search, MapPin, User, ChevronRight } from 'lucide-react-native'
 import { NAV_ITEMS, LOCATION_DATA } from '../../mock/navigation'
 import { ALL_CITIES } from '../../mock/cities'
 import { LocationModal } from './location-modal'
+import { SearchModal } from './search-modal'
 
 export function Navbar() {
     const { width } = useWindowDimensions()
     const [mounted, setMounted] = useState(false)
     const [isDesktop, setIsDesktop] = useState(true)
     const [showLocationModal, setShowLocationModal] = useState(false)
+    const [showSearchModal, setShowSearchModal] = useState(false)
     const [selectedCity, setSelectedCity] = useState(LOCATION_DATA.city)
 
     useEffect(() => {
@@ -141,9 +143,8 @@ export function Navbar() {
 
                     <Box flex={1} />
 
-                    {/* Action Icons */}
                     <HStack space="xl" alignItems="center">
-                        <Pressable>
+                        <Pressable onPress={() => setShowSearchModal(true)}>
                             <Search size={20} color="#7c3aed" />
                         </Pressable>
                         <Pressable>
@@ -187,25 +188,27 @@ export function Navbar() {
                     </HStack>
 
                     {/* Row 2: Search Bar */}
-                    <Box
-                        bg={theme.searchBg}
-                        borderWidth={1}
-                        borderColor={theme.searchBorder}
-                        borderRadius="$xl"
-                        h={52}
-                        px="$4"
-                        flexDirection="row"
-                        alignItems="center"
-                    >
-                        <Search size={20} color="#9ca3af" />
-                        <Text
-                            ml="$3"
-                            color={theme.subText}
-                            fontSize="$sm"
+                    <Pressable onPress={() => setShowSearchModal(true)}>
+                        <Box
+                            bg={theme.searchBg}
+                            borderWidth={1}
+                            borderColor={theme.searchBorder}
+                            borderRadius="$xl"
+                            h={52}
+                            px="$4"
+                            flexDirection="row"
+                            alignItems="center"
                         >
-                            Search for events, movies and restaurants
-                        </Text>
-                    </Box>
+                            <Search size={20} color="#9ca3af" />
+                            <Text
+                                ml="$3"
+                                color={theme.subText}
+                                fontSize="$sm"
+                            >
+                                Search for events, movies and restaurants
+                            </Text>
+                        </Box>
+                    </Pressable>
 
                     {/* Row 3: Icon Nav Categories */}
                     <ScrollView
@@ -252,6 +255,11 @@ export function Navbar() {
                 onClose={() => setShowLocationModal(false)}
                 currentCity={selectedCity}
                 onSelectCity={handleSelectCity}
+            />
+            <SearchModal
+                isOpen={showSearchModal}
+                onClose={() => setShowSearchModal(false)}
+                currentCity={selectedCity}
             />
         </Box>
     )
