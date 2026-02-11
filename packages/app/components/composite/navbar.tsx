@@ -8,6 +8,7 @@ import { NAV_ITEMS, LOCATION_DATA } from '../../mock/navigation'
 import { ALL_CITIES } from '../../mock/cities'
 import { LocationModal } from './location-modal'
 import { SearchModal } from './search-modal'
+import { ProfileSidebar } from './profile-sidebar'
 
 export function Navbar() {
     const { width } = useWindowDimensions()
@@ -15,6 +16,7 @@ export function Navbar() {
     const [isDesktop, setIsDesktop] = useState(true)
     const [showLocationModal, setShowLocationModal] = useState(false)
     const [showSearchModal, setShowSearchModal] = useState(false)
+    const [showProfileSidebar, setShowProfileSidebar] = useState(false)
     const [selectedCity, setSelectedCity] = useState(LOCATION_DATA.city)
 
     useEffect(() => {
@@ -177,6 +179,11 @@ export function Navbar() {
                             </VStack>
                         </HStack>
                         <Pressable>
+                    <HStack space="xl" alignItems="center">
+                        <Pressable onPress={() => setShowSearchModal(true)}>
+                            <Search size={20} color="#7c3aed" />
+                        </Pressable>
+                        <Pressable onPress={() => setShowProfileSidebar(true)}>
                             <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
                                 <User size={22} color="#888" />
                             </Box>
@@ -288,7 +295,7 @@ export function Navbar() {
                                 </VStack>
                             </HStack>
                         </Pressable>
-                        <Pressable>
+                        <Pressable onPress={() => setShowProfileSidebar(true)}>
                             <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
                                 <User size={22} color="#888" />
                             </Box>
@@ -362,6 +369,10 @@ export function Navbar() {
                 isOpen={showSearchModal}
                 onClose={() => setShowSearchModal(false)}
                 currentCity={selectedCity}
+            />
+            <ProfileSidebar
+                isOpen={showProfileSidebar}
+                onClose={() => setShowProfileSidebar(false)}
             />
         </Box>
     )
