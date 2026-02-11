@@ -146,7 +146,7 @@ export function Navbar() {
                             <Pressable onPress={() => setShowSearchModal(true)}>
                                 <Search size={20} color="#9ca3af" />
                             </Pressable>
-                            <Pressable>
+                            <Pressable onPress={() => setShowProfileSidebar(true)}>
                                 <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
                                     <User size={20} color="#888" />
                                 </Box>
@@ -178,16 +178,16 @@ export function Navbar() {
                                 </Text>
                             </VStack>
                         </HStack>
-                        <Pressable>
-                    <HStack space="xl" alignItems="center">
-                        <Pressable onPress={() => setShowSearchModal(true)}>
-                            <Search size={20} color="#7c3aed" />
-                        </Pressable>
-                        <Pressable onPress={() => setShowProfileSidebar(true)}>
-                            <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
-                                <User size={22} color="#888" />
-                            </Box>
-                        </Pressable>
+                        <HStack space="xl" alignItems="center">
+                            <Pressable onPress={() => setShowSearchModal(true)}>
+                                <Search size={20} color="#888" />
+                            </Pressable>
+                            <Pressable onPress={() => setShowProfileSidebar(true)}>
+                                <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
+                                    <User size={20} color="#888" />
+                                </Box>
+                            </Pressable>
+                        </HStack>
                     </HStack>
 
                     {/* Row 2: Search Bar - sticky */}
