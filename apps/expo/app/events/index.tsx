@@ -68,8 +68,6 @@ export default function EventsScreen() {
 
     return (
         <Box flex={1} backgroundColor="$black" role="main" accessibilityLabel="Events page">
-            {/* Navbar fixed at top - outside ScrollView */}
-            <Navbar />
 
             {error ? (
                 <Box

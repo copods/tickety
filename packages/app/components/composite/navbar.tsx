@@ -74,36 +74,28 @@ export function Navbar() {
             }}
         >
             {isDesktop ? (
-                // Desktop Layout: Single Row with sticky behavior
-                <Box
-                    bg={theme.bg}
-                    sx={{
-                        _web: {
-                            position: 'sticky' as const,
-                            top: 0,
-                            zIndex: 999,
-                        },
-                    }}
+                // Desktop Layout: Single Row
+                <HStack
+                    w="100%"
+                    maxWidth={1400}
+                    mx="auto"
+                    px="$2"
+                    py="$3"
+                    alignItems="center"
+                    space="lg"
                 >
-                    <HStack
-                        w="100%"
-                        maxWidth={1200}
-                        mx="auto"
-                        px="$6"
-                        py="$3"
-                        alignItems="center"
-                        space="lg"
-                    >
-                        {/* Logo */}
-                        <VStack mr="$2">
-                            <Text fontWeight="$extrabold" fontSize="$3xl"  lineHeight="$xs">
-                                Tickety
-                            </Text>
-                        </VStack>
+                    {/* Logo */}
+                    <VStack mr="$2">
+                        <Text fontWeight="$extrabold" fontSize="$3xl" color={theme.text} lineHeight="$xs">
+                            Tickety
+                        </Text>
 
-                        <Box h={35} w={1} bg="$coolGray200" />
+                    </VStack>
 
-                        {/* Location Box */}
+                    <Box h={35} w={1} bg="$coolGray200" />
+
+                    {/* Location Box */}
+                    <Pressable onPress={() => setShowLocationModal(true)}>
                         <HStack
                             borderColor={theme.locationBorder}
                             borderRadius="$full"
@@ -115,14 +107,14 @@ export function Navbar() {
                             <MapPin size={20} color="#7c3aed" />
                             <VStack>
                                 <Text fontWeight="$bold" fontSize="$sm" color={theme.text} lineHeight="$xs">
-                                    {LOCATION_DATA.city}
+                                    {selectedCity}
                                 </Text>
                                 <Text fontSize="$2xs" color={theme.subText}>
-                                    {LOCATION_DATA.state}
+                                    {ALL_CITIES.find(c => c.name === selectedCity)?.state || LOCATION_DATA.state}
                                 </Text>
                             </VStack>
-                            <ChevronRight size={16} color={theme.text} />
                         </HStack>
+                    </Pressable>
 
                         {/* Navigation Links */}
                         <HStack space="xl" ml="$12" alignItems="center" justifyContent='center'>
@@ -148,9 +140,8 @@ export function Navbar() {
 
                         <Box flex={1} />
 
-                        {/* Action Icons */}
-                        <HStack space="xl" alignItems="center">
-                            <Pressable>
+                            <HStack space="xl" alignItems="center">
+                            <Pressable onPress={() => setShowSearchModal(true)}>
                                 <Search size={20} color="#9ca3af" />
                             </Pressable>
                             <Pressable>
@@ -159,8 +150,8 @@ export function Navbar() {
                                 </Box>
                             </Pressable>
                         </HStack>
-                    </HStack>
-                </Box>
+                </HStack>
+                
             ) : isWeb ? (
                 // Tablet/Mobile Web Layout: 3-row layout with sticky search + nav
                 <VStack
@@ -176,7 +167,7 @@ export function Navbar() {
                             <VStack>
                                 <HStack alignItems="center" space="xs">
                                     <Text fontWeight="$bold" fontSize="$lg" color={theme.text}>
-                                        {LOCATION_DATA.city}
+                                        {selectedCity}
                                     </Text>
                                     <ChevronRight size={18} color={theme.text} />
                                 </HStack>
@@ -279,22 +270,24 @@ export function Navbar() {
                     py="$4"
                     space="lg"
                 >
-                    {/* Row 1: Location & Profile (fixed because Navbar is outside ScrollView) */}
+                    {/* Row 1: Location & Profile */}
                     <HStack justifyContent="space-between" alignItems="center">
-                        <HStack alignItems="center" space="sm">
-                            <MapPin size={24} color="#7c3aed" />
-                            <VStack>
-                                <HStack alignItems="center" space="xs">
-                                    <Text fontWeight="$bold" fontSize="$lg" color={theme.text}>
-                                        {LOCATION_DATA.city}
+                        <Pressable onPress={() => setShowLocationModal(true)}>
+                            <HStack alignItems="center" space="sm">
+                                <MapPin size={24} color="#7c3aed" />
+                                <VStack>
+                                    <HStack alignItems="center" space="xs">
+                                        <Text fontWeight="$bold" fontSize="$lg" color={theme.text}>
+                                            {selectedCity}
+                                        </Text>
+                                        <ChevronRight size={18} color={theme.text} />
+                                    </HStack>
+                                    <Text fontSize="$xs" color={theme.subText}>
+                                        {ALL_CITIES.find(c => c.name === selectedCity)?.state || LOCATION_DATA.state}
                                     </Text>
-                                    <ChevronRight size={18} color={theme.text} />
-                                </HStack>
-                                <Text fontSize="$xs" color={theme.subText}>
-                                    {LOCATION_DATA.state}
-                                </Text>
-                            </VStack>
-                        </HStack>
+                                </VStack>
+                            </HStack>
+                        </Pressable>
                         <Pressable>
                             <Box bg={theme.profileBg} p="$2.5" borderRadius="$full">
                                 <User size={22} color="#888" />
@@ -302,8 +295,8 @@ export function Navbar() {
                         </Pressable>
                     </HStack>
 
-                    {/* Fixed Search Bar */}
-                    <Box>
+                    {/* Row 2: Search Bar */}
+                    <Pressable onPress={() => setShowSearchModal(true)}>
                         <Box
                             bg={theme.searchBg}
                             borderWidth={1}
@@ -323,7 +316,7 @@ export function Navbar() {
                                 Search for events, movies and restaurants
                             </Text>
                         </Box>
-                    </Box>
+                    </Pressable>
 
                     {/* Fixed Navigation Categories */}
                     <ScrollView
