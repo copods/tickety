@@ -93,6 +93,7 @@ export default function EventsScreen() {
           onScroll={handleScroll}
           scrollEventThrottle={16}
         >
+          <Navbar />
           <Box gap="$16">
             <EventCarousel
               data={events.slice(0, 5)}
