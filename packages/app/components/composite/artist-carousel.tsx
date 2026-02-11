@@ -7,7 +7,7 @@ import {
   Platform,
   useWindowDimensions,
 } from "react-native";
-import { ChevronLeft, ChevronRight } from "lucide-react-native";
+import { ChevronLeft, ChevronRight, Bookmark } from "lucide-react-native";
 
 import type { Artist, ArtistCarouselProps } from "../../types";
 
@@ -18,6 +18,8 @@ export const ArtistCarousel = ({
   onArtistPress,
 }: ArtistCarouselProps) => {
   const isWeb = Platform.OS === "web";
+  const isNative = Platform.OS === "ios" || Platform.OS === "android";
+  const useDarkTheme = isNative;
   const scrollRef = useRef<ScrollView>(null);
   const [scrollX, setScrollX] = useState(0);
   const [contentWidth, setContentWidth] = useState(0);
@@ -32,7 +34,7 @@ export const ArtistCarousel = ({
   const isMobile = isMounted ? width < 768 : false;
 
   const ITEM_WIDTH = isMobile ? 120 : 160;
-  const ITEM_GAP = 18; // approx "lg" space
+  const ITEM_GAP = 18;
   const SCROLL_AMOUNT = (ITEM_WIDTH + ITEM_GAP) * 3;
   const canScrollLeft = scrollX > 0;
   const canScrollRight = scrollX + containerWidth < contentWidth - 1;
@@ -62,7 +64,7 @@ export const ArtistCarousel = ({
       accessibilityLabel="Artists in your District"
     >
       <HStack justifyContent="space-between" alignItems="center">
-        <Heading fontSize="$3xl" color="$black" fontWeight="$bold">
+        <Heading fontSize="$3xl" color={useDarkTheme ? "$white" : "$black"} fontWeight="$bold">
           Artists in your District
         </Heading>
 
@@ -144,16 +146,42 @@ export const ArtistCarousel = ({
                   <Box
                     width={ITEM_WIDTH}
                     height={ITEM_WIDTH}
-                    borderRadius={999}
-                    overflow="hidden"
                     mb="$2"
+                    position="relative"
                   >
-                    <Image
-                      source={{ uri: artist.image }}
-                      style={{ width: "100%", height: "100%" }}
-                      resizeMode="cover"
-                      accessibilityLabel={`Photo of ${artist.name}`}
-                    />
+                    {/* Circular artist image */}
+                    <Box
+                      width="100%"
+                      height="100%"
+                      borderRadius={999}
+                      overflow="hidden"
+                    >
+                      <Image
+                        source={{ uri: artist.image }}
+                        style={{ width: "100%", height: "100%" }}
+                        resizeMode="cover"
+                        accessibilityLabel={`Photo of ${artist.name}`}
+                      />
+                    </Box>
+
+                    {/* Save/Bookmark icon - shown on mobile at bottom-right, outside the circle */}
+                    {isMobile && (
+                      <Box
+                        position="absolute"
+                        bottom={0}
+                        right={0}
+                        bg="rgba(0,0,0,0.7)"
+                        borderRadius={999}
+                        p="$1.5"
+                        zIndex={1000}
+                      >
+                        <Bookmark
+                          size={16}
+                          color="#ffffff"
+                          strokeWidth={2}
+                        />
+                      </Box>
+                    )}
                   </Box>
 
                   <Text
@@ -161,6 +189,7 @@ export const ArtistCarousel = ({
                     fontSize="$sm"
                     fontWeight="$medium"
                     numberOfLines={2}
+                    color={useDarkTheme ? "$white" : "$black"}
                   >
                     {artist.name}
                   </Text>

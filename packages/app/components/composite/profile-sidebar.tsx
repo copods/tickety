@@ -62,7 +62,7 @@ export function ProfileSidebar({ isOpen, onClose }: ProfileSidebarProps) {
                 borderTopRightRadius="$xl"
                 borderBottomRightRadius="$xl"
             >
-                <Box h="100%" pt="$3">
+                <Box h="100%">
                     <HStack
                         alignItems="center"
                         space="md"

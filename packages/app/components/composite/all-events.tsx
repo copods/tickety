@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { Box, HStack, VStack, Text, Heading } from "../ui";
 import {
   Image,
@@ -9,11 +16,23 @@ import {
   ActivityIndicator,
   View,
 } from "react-native";
-import { SlidersHorizontal, ChevronDown } from "lucide-react-native";
+import {
+  SlidersHorizontal,
+  ChevronDown,
+  Bookmark,
+  MapPin,
+} from "lucide-react-native";
 import { fetchAllEvents } from "../../services/api";
 import { FilterModal } from "./filter-modal";
 
-import type { AllEventsProps, CarouselEvent, EventFilters } from "../../types";
+import type {
+  AllEventsProps,
+  AllEventsHandle,
+  CarouselEvent,
+  EventFilters,
+} from "../../types";
+
+type QuickFilterId = "today" | "tomorrow" | "this_week";
 
 const QUICK_FILTERS = [
   { id: "today", label: "Today", type: "date" as const },
@@ -34,7 +53,8 @@ const QUICK_FILTERS = [
   },
 ];
 
-export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
+export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
+  ({ genres, onEventPress }, ref) => {
   const isWeb = Platform.OS === "web";
   const useDarkTheme = !isWeb;
   const [isMounted, setIsMounted] = useState(false);
@@ -64,15 +84,21 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
 
   const isMobile = isMounted ? width < 768 : false;
   const isTablet = isMounted ? width >= 768 && width < 1024 : false;
-  const itemsPerPage = isMobile ? 4 : 16;
+
+  // We think in "rows" for pagination:
+  // - Mobile (native + mobile web): 3 rows of 2 cards = 6 events
+  // - Larger web: 4 rows (approx. 2+ cards per row in our grid) ≈ 8 events
+  const rowsPerPage = isWeb ? 4 : 3;
+  const columnsPerRow = isWeb ? 4 : 2;
+  const itemsPerPage = isMobile ? 4:16; // Web has a looser grid, so we load more items per page to fill it
 
   // Theme
   const theme = {
-    bg: useDarkTheme ? "#111827" : "transparent",
-    cardBg: useDarkTheme ? "#1f2937" : "#ffffff",
+    bg: useDarkTheme ? "#000000" : "transparent",
+    cardBg: useDarkTheme ? "transparent" : "#ffffff",
     text: useDarkTheme ? "#ffffff" : "#000000",
     subText: useDarkTheme ? "#9ca3af" : "#6b7280",
-    border: useDarkTheme ? "#374151" : "#e4e7eb",
+    border: useDarkTheme ? "transparent" : "#e4e7eb",
     chipBg: useDarkTheme ? "#1f2937" : "#ffffff",
     chipBorder: useDarkTheme ? "#374151" : "#d1d5da",
     chipText: useDarkTheme ? "#ffffff" : "#000000",
@@ -130,7 +156,7 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
         setPage(pageNum);
         pageRef.current = pageNum;
       } catch {
-        // Silently handle error for infinite scroll loads
+        setLoading(false);
       } finally {
         if (append) {
           setIsLoadingMore(false);
@@ -143,11 +169,11 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
     []
   );
 
-  // Initial load after mount
+  // Initial load after mount or when pagination configuration changes
   useEffect(() => {
     if (!isMounted) return;
     loadEvents(1, filters, false, itemsPerPage);
-  }, [isMounted]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isMounted, itemsPerPage, filters, loadEvents]);
 
   // Web infinite scroll
   useEffect(() => {
@@ -189,9 +215,8 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
 
   // Handle quick filter chip press
   const handleQuickFilter = useCallback(
-    (filterId: string) => {
+    (filterId: QuickFilterId) => {
       if (activeQuickFilter === filterId) {
-        // Deactivate: clear filter
         setActiveQuickFilter(null);
         const cleared: EventFilters = {};
         setFilters(cleared);
@@ -206,8 +231,9 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
       setActiveQuickFilter(filterId);
       const quickFilter = QUICK_FILTERS.find((f) => f.id === filterId);
       if (!quickFilter) return;
-
-      let newFilters: EventFilters = {};
+      // For now, quick date filters simply clear advanced filters
+      // and rely on backend default ordering (e.g. by date).
+       let newFilters: EventFilters = {};
       if (quickFilter.type === "genre" && "genres" in quickFilter) {
         newFilters = { genres: quickFilter.genres };
       }
@@ -229,8 +255,23 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
     loadEvents(nextPage, filters, true, itemsPerPage);
   }, [isLoadingMore, hasMore, page, filters, itemsPerPage, loadEvents]);
 
+  // Expose an imperative handle so native screens can trigger
+  // loading more events when the user scrolls near the bottom.
+  useImperativeHandle(
+    ref,
+    () => ({
+      loadNextPage: () => {
+        handleLoadMore();
+      },
+    }),
+    [handleLoadMore]
+  );
+
   const activeFilterCount =
     (filters.sortBy ? 1 : 0) + (filters.genres?.length || 0);
+
+  // Calculate card width for 2-column mobile grid (extra padding for gutters)
+  const mobileCardWidth = isMobile ? (width - 64) / 2 : 0;
 
   return (
     <Box
@@ -261,7 +302,6 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
           onPress={() => setIsFilterModalOpen(true)}
           accessibilityRole="button"
           accessibilityLabel={`Open filters${activeFilterCount > 0 ? `, ${activeFilterCount} active` : ""}`}
-          style={{ cursor: isWeb ? "pointer" : "default" }}
         >
           <HStack
             borderWidth={1}
@@ -270,7 +310,7 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
             }
             borderRadius="$full"
             px="$4"
-            py="$2"
+            py="$2.5"
             alignItems="center"
             space="sm"
             bg={activeFilterCount > 0 ? theme.chipActiveBg : theme.chipBg}
@@ -291,7 +331,7 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
                 <Text
                   fontSize={11}
                   fontWeight="$bold"
-                  color={useDarkTheme ? "#ffffff" : "#ffffff"}
+                  color="#ffffff"
                 >
                   {activeFilterCount}
                 </Text>
@@ -310,7 +350,6 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
               onPress={() => handleQuickFilter(filter.id)}
               accessibilityRole="button"
               accessibilityLabel={`${filter.label} filter${isActive ? ", active" : ""}`}
-              style={{ cursor: isWeb ? "pointer" : "default" }}
             >
               <Box
                 borderWidth={1}
@@ -319,7 +358,7 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
                 }
                 borderRadius="$full"
                 px="$4"
-                py="$2"
+                py="$2.5"
                 bg={isActive ? theme.chipActiveBg : theme.chipBg}
               >
                 <Text
@@ -348,17 +387,15 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
         </Box>
       ) : (
         <>
-          <HStack flexWrap="wrap" space="lg" justifyContent="flex-start">
-            {events.map((event) => (
+          <HStack flexWrap="wrap" space="md" justifyContent="flex-start">
+            {events.map((event, index) => (
               <Box
-                key={event.id}
-                width={
-                  isMobile ? "100%" : isTablet ? "48%" : "24%"
-                }
-                minHeight={isMobile ? 340 : 420}
-                borderWidth={1}
-                borderColor={theme.border}
+                key={`${event.id}-${index}`}
+                // minHeight={isMobile ? 340 : 420}
+                width={isMobile ? mobileCardWidth : isTablet ? "48%" : "24%"}
                 borderRadius="$xl"
+                borderColor={theme.border}
+                borderWidth={1}
                 overflow="hidden"
                 bg={theme.cardBg}
                 mb="$4"
@@ -368,23 +405,46 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
                   accessibilityRole="link"
                   accessibilityLabel={`${event.name}, ${event.date} at ${event.venue}, ${event.price}`}
                   style={({ pressed }) => ({
-                    opacity: pressed ? 0.85 : 1,
+                    opacity: pressed ? 0.5 : 1,
                     cursor: isWeb ? "pointer" : "default",
                   })}
                 >
-                  <VStack overflow="hidden" height="100%">
-                    {/* Event Image */}
-                    <Box width="100%" height={isMobile ? 360 : 380}>
+                  <VStack>
+                    {/* Event Image with bookmark */}
+                    <Box
+                      width="100%"
+                      height={isMobile ? 260 : 320}
+                      position="relative"
+                      borderRadius={isMobile ? "$lg" : "$none"}
+                      overflow="hidden"
+                    >
                       <Image
                         source={{ uri: event.image }}
                         style={{ width: "100%", height: "100%" }}
                         resizeMode="cover"
                         accessibilityLabel={`${event.name} event poster`}
                       />
+                       {/* Bookmark icon */}
+                      {!isWeb &&
+                      <Box
+                        position="absolute"
+                        top={12}
+                        right={12}
+                        bg="rgba(15,15,15,0.85)"
+                        borderRadius={12}
+                        p="$2"
+                      >
+                        <Bookmark
+                          size={20}
+                          color="#ffffff"
+                          strokeWidth={2.2}
+                        />
+                      </Box>
+                      }
                     </Box>
 
                     {/* Event Info */}
-                    <VStack p="$3" space="xs">
+                     <VStack p="$3" space="xs">
                       <Text
                         fontSize="$xs"
                         fontWeight="$semibold"
@@ -432,31 +492,6 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
             </Box>
           )}
 
-          {/* Native: Load More button */}
-          {!isWeb && hasMore && !isLoadingMore && (
-            <Pressable
-              onPress={handleLoadMore}
-              accessibilityRole="button"
-              accessibilityLabel="Load more events"
-            >
-              <Box
-                alignItems="center"
-                py="$4"
-                borderWidth={1}
-                borderColor={theme.border}
-                borderRadius="$xl"
-              >
-                <Text
-                  fontSize="$md"
-                  fontWeight="$semibold"
-                  color={theme.text}
-                >
-                  Load More
-                </Text>
-              </Box>
-            </Pressable>
-          )}
-
           {/* Web: Bottom sentinel for infinite scroll */}
           {isWeb && hasMore && <View style={{ height: 1 }} />}
         </>
@@ -473,4 +508,4 @@ export const AllEvents = ({ genres, onEventPress }: AllEventsProps) => {
       />
     </Box>
   );
-};
+});

@@ -122,19 +122,13 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
   if (!activeEvent) return null;
 
   // Responsive sizing
-  const carouselHeight = isMobile ? 650 : isTablet ? 580 : 600;
+  const carouselHeight = isMobile ? 420 : isTablet ? 580 : 600;
   const containerPadding = isMobile ? "$4" : isTablet ? "$6" : "$10";
   const maxWidth = isMobile ? "100%" : isTablet ? 900 : 1200;
 
   // Platform-specific optimizations
-  // Blur: iOS handles blur best (25), Web moderate (15-20), Android conservative (15)
   const blurIntensity = isWeb ? (isMobile ? 15 : 20) : isIOS ? 25 : 15;
-  // Shadow: iOS and Web use native shadows, Android uses elevation for better performance
   const useNativeShadow = isIOS || isWeb;
-  // Haptics: Only available on native platforms (iOS/Android)
-  const enableHaptics = isNative;
-  // Images: Web uses lazy loading for performance, native uses eager for smooth scrolling
-  const imageLoadingStrategy = isWeb ? "lazy" : "eager";
 
   return (
     <Box
@@ -142,32 +136,43 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
       width="100%"
       height={carouselHeight}
       overflow="hidden"
-      backgroundColor="$white"
+      backgroundColor={isMobile && isNative ? "$black" : "$white"}
       accessibilityRole="summary"
       accessibilityLabel={`Event carousel, showing ${activeEvent.name}, slide ${activeIndex + 1} of ${data.length}`}
     >
-      {/* Background Layer (Blurred Banner) - Full Width */}
+      {/* Background Layer - Full Width */}
       <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={0}>
         <Image
           source={{ uri: activeEvent.bannerImage }}
           style={StyleSheet.absoluteFill}
           resizeMode="cover"
-          blurRadius={blurIntensity}
+          blurRadius={isMobile && isNative ? 0 : blurIntensity}
           accessibilityLabel=""
           accessible={false}
         />
-        {/* Soft overlay */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          backgroundColor="$carouselOverlay"
-        />
+        {/* Dark gradient overlay for mobile */}
+        {isMobile && isNative ? (
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            backgroundColor="rgba(0,0,0,0.45)"
+          />
+        ) : (
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            backgroundColor="$carouselOverlay"
+          />
+        )}
       </Box>
 
-      {/* Content Container with Fade Animation - Constrained Width */}
+      {/* Content Container with Fade Animation */}
       <Box
         position="absolute"
         top={0}
@@ -189,116 +194,60 @@ export const EventCarousel = ({ data, onEventPress }: EventCarouselProps) => {
           }}
         >
           {isMobile ? (
-            // Mobile: Vertical Stack Layout
+            // Mobile: Hero Banner Layout - image bg with overlaid text
             <VStack
-              alignItems="center"
               justifyContent="center"
+              alignItems="center"
               width="100%"
-              px={containerPadding}
-              maxWidth={maxWidth}
-              alignSelf="center"
+              px="$6"
               flex={1}
               space="md"
-              py="$10"
             >
-              {/* Poster Image First on Mobile */}
-              <Box
-                width="100%"
-                maxWidth={280}
-                height={360}
-                borderRadius="$2xl"
-                overflow="hidden"
-                {...(useNativeShadow && {
-                  shadowColor: "$black",
-                  shadowOffset: { width: 0, height: 16 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 24,
-                })}
-                elevation={isAndroid ? 16 : 0}
-                bg="$white"
+              <Heading
+                size="3xl"
+                color="$white"
+                fontWeight="900"
+                lineHeight={44}
+                textAlign="center"
+                fontStyle="italic"
               >
-                <Image
-                  source={{ uri: activeEvent.image }}
-                  style={{ width: "100%", height: "100%" }}
-                  resizeMode="cover"
-                  accessibilityLabel={`Poster for ${activeEvent.name}`}
-                />
-              </Box>
+                Plan special{"\n"}evenings
+              </Heading>
 
-              {/* Event Details Below on Mobile */}
-              <VStack space="sm" width="100%" alignItems="center">
-                <VStack space="xs" alignItems="center">
-                  <Text
-                    fontWeight="$semibold"
-                    color="$black"
-                    fontSize="$xs"
-                    textTransform="uppercase"
-                    letterSpacing={0.5}
-                    textAlign="center"
-                  >
-                    {activeEvent.date} • {activeEvent.time}
-                  </Text>
-                </VStack>
+              <Text
+                color="#e2c4f0"
+                fontSize="$sm"
+                fontWeight="$medium"
+                textAlign="center"
+                letterSpacing={0.5}
+              >
+                Music, comedy, nightlife & more
+              </Text>
 
-                <Heading
-                  size="xl"
-                  color="$text900"
-                  fontWeight="900"
-                  lineHeight={32}
-                  numberOfLines={2}
-                  textAlign="center"
+              <Box mt="$4">
+                <Button
+                  size="md"
+                  bg="$white"
+                  action="primary"
+                  borderRadius="$full"
+                  onPress={() => onEventPress?.(activeEvent)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Explore events now"
+                  px="$6"
+                  height={44}
                 >
-                  {activeEvent.name}
-                </Heading>
-
-                <VStack space="xs" alignItems="center">
-                  <Text
+                  <ButtonText
                     color="$black"
+                    fontWeight="$bold"
                     fontSize="$sm"
-                    fontWeight="$semibold"
-                    textAlign="center"
                   >
-                    {activeEvent.venue}
-                  </Text>
-                  <Text
-                    color="$black"
-                    fontWeight="400"
-                    fontSize="$lg"
-                    textAlign="center"
-                  >
-                    {activeEvent.price}
-                  </Text>
-                </VStack>
-
-                <Box margin="$0">
-                  <Button
-                    size="md"
-                    bg="$black"
-                    action="primary"
-                    borderRadius="$full"
-                    onPress={() => onEventPress?.(activeEvent)}
-                    accessibilityRole="button"
-                    accessibilityLabel={`Book tickets for ${activeEvent.name}`}
-                    width={180}
-                    height={48}
-                    {...(useNativeShadow && {
-                      shadowColor: "$black",
-                      shadowOffset: { width: 0, height: 4 },
-                      shadowOpacity: 0.3,
-                      shadowRadius: 8,
-                    })}
-                    elevation={isAndroid ? 8 : 0}
-                  >
-                    <ButtonText
-                      color="$white"
-                      fontWeight="$bold"
-                      fontSize="$sm"
-                    >
-                      Book Tickets
-                    </ButtonText>
-                  </Button>
-                </Box>
-              </VStack>
+                    Explore now
+                  </ButtonText>
+                  <Box ml="$1">
+                    <ChevronRight size={16} color="#000" strokeWidth={2.5} />
+                  </Box>
+                </Button>
+              </Box>
             </VStack>
           ) : (
             // Tablet/Desktop: Horizontal Stack Layout

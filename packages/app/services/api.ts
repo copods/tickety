@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import type {
   CarouselEvent,
   Artist,
@@ -8,9 +9,18 @@ import type {
 } from "../types";
 export type { ArtistDetail } from "../types";
 
-const EVENTS_API_URL = "/api/events";
-const ARTISTS_API_URL = "/api/artists";
-const CATEGORIES_API_URL = "/api/categories";
+// On web (Next.js), relative URLs work. On native, we need the full URL
+// pointing to the Next.js dev server.
+const API_BASE = Platform.select({
+  web: "",
+  ios: "http://localhost:3000",
+  android: "http://10.0.2.2:3000",
+  default: "http://localhost:3000",
+});
+
+const EVENTS_API_URL = `${API_BASE}/api/events`;
+const ARTISTS_API_URL = `${API_BASE}/api/artists`;
+const CATEGORIES_API_URL = `${API_BASE}/api/categories`;
 
 export async function fetchEvents(): Promise<CarouselEvent[]> {
   const res = await fetch(EVENTS_API_URL);
@@ -24,13 +34,27 @@ export async function fetchAllEvents(params: {
   sortBy?: string;
   genre?: string;
 }): Promise<PaginatedEventsResponse> {
-  const searchParams = new URLSearchParams();
-  if (params.page) searchParams.set("page", String(params.page));
-  if (params.limit) searchParams.set("limit", String(params.limit));
-  if (params.sortBy) searchParams.set("sortBy", params.sortBy);
-  if (params.genre) searchParams.set("genre", params.genre);
+  // NOTE:
+  // - Some React Native environments don't have a full `URLSearchParams` implementation,
+  //   which was causing the AllEvents API call to fail silently and return no data.
+  // - We build the query string manually so this works consistently on web and native.
+  const queryEntries: [string, string][] = [];
 
-  const res = await fetch(`${EVENTS_API_URL}?${searchParams.toString()}`);
+  if (params.page != null) queryEntries.push(["page", String(params.page)]);
+  if (params.limit != null) queryEntries.push(["limit", String(params.limit)]);
+  if (params.sortBy) queryEntries.push(["sortBy", params.sortBy]);
+  if (params.genre) queryEntries.push(["genre", params.genre]);
+
+  const queryString = queryEntries
+    .map(
+      ([key, value]) =>
+        `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`
+    )
+    .join("&");
+
+  const url = queryString ? `${EVENTS_API_URL}?${queryString}` : EVENTS_API_URL;
+
+  const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch events (${res.status})`);
   return res.json();
 }

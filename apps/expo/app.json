@@ -9,10 +9,17 @@
       "android"
     ],
     "ios": {
-      "bundleIdentifier": "com.solito.expo-router"
+      "bundleIdentifier": "com.solito.expo-router",
+      "supportsAppleSignIn": true,
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
     },
     "android": {
-      "package": "com.solito.exporouter"
+      "package": "com.solito.exporouter",
+      "usesCleartextTraffic": true
     },
     "plugins": [
       "expo-router"
