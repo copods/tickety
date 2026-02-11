@@ -8,6 +8,7 @@ const nextConfig = {
     'moti',
     'react-native-reanimated',
     'lucide-react-native',
+    'expo-linear-gradient',
   ],
 }
 

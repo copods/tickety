@@ -34,10 +34,23 @@ import type {
 
 type QuickFilterId = "today" | "tomorrow" | "this_week";
 
-const QUICK_FILTERS: { id: QuickFilterId; label: string }[] = [
-  { id: "today", label: "Today" },
-  { id: "tomorrow", label: "Tomorrow" },
-  { id: "this_week", label: "This Week" },
+const QUICK_FILTERS = [
+  { id: "today", label: "Today", type: "date" as const },
+  { id: "tomorrow", label: "Tomorrow", type: "date" as const },
+  { id: "this_weekend", label: "This Weekend", type: "date" as const },
+  { id: "under_10km", label: "Under 10 km", type: "distance" as const },
+  {
+    id: "celebrations",
+    label: "Celebrations",
+    type: "genre" as const,
+    genres: ["Fests & Fairs"],
+  },
+  {
+    id: "music",
+    label: "Music",
+    type: "genre" as const,
+    genres: ["Music"],
+  },
 ];
 
 export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
@@ -76,8 +89,8 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
   // - Mobile (native + mobile web): 3 rows of 2 cards = 6 events
   // - Larger web: 4 rows (approx. 2+ cards per row in our grid) ≈ 8 events
   const rowsPerPage = isWeb ? 4 : 3;
-  const columnsPerRow = 2;
-  const itemsPerPage = rowsPerPage * columnsPerRow;
+  const columnsPerRow = isWeb ? 4 : 2;
+  const itemsPerPage = isMobile ? 4:16; // Web has a looser grid, so we load more items per page to fill it
 
   // Theme
   const theme = {
@@ -220,7 +233,11 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
       if (!quickFilter) return;
       // For now, quick date filters simply clear advanced filters
       // and rely on backend default ordering (e.g. by date).
-      const newFilters: EventFilters = {};
+       let newFilters: EventFilters = {};
+      if (quickFilter.type === "genre" && "genres" in quickFilter) {
+        newFilters = { genres: quickFilter.genres };
+      }
+      // For date/distance filters, we pass the genre but API handles fallback
       setFilters(newFilters);
       filtersRef.current = newFilters;
       setEvents([]);
@@ -370,26 +387,25 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
         </Box>
       ) : (
         <>
-          <Box
-            flexDirection="row"
-            flexWrap="wrap"
-            justifyContent="space-between"
-          >
+          <HStack flexWrap="wrap" space="md" justifyContent="flex-start">
             {events.map((event, index) => (
               <Box
                 key={`${event.id}-${index}`}
-                width={isMobile ? mobileCardWidth : isTablet ? "48%" : "48%"}
+                // minHeight={isMobile ? 340 : 420}
+                width={isMobile ? mobileCardWidth : isTablet ? "48%" : "24%"}
                 borderRadius="$xl"
+                borderColor={theme.border}
+                borderWidth={1}
                 overflow="hidden"
                 bg={theme.cardBg}
-                mb="$5"
+                mb="$4"
               >
                 <Pressable
                   onPress={() => onEventPress?.(event)}
                   accessibilityRole="link"
                   accessibilityLabel={`${event.name}, ${event.date} at ${event.venue}, ${event.price}`}
                   style={({ pressed }) => ({
-                    opacity: pressed ? 0.9 : 1,
+                    opacity: pressed ? 0.5 : 1,
                     cursor: isWeb ? "pointer" : "default",
                   })}
                 >
@@ -399,7 +415,7 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
                       width="100%"
                       height={isMobile ? 260 : 320}
                       position="relative"
-                      borderRadius="$xl"
+                      borderRadius={isMobile ? "$lg" : "$0"}
                       overflow="hidden"
                     >
                       <Image
@@ -408,7 +424,8 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
                         resizeMode="cover"
                         accessibilityLabel={`${event.name} event poster`}
                       />
-                      {/* Bookmark icon */}
+                       {/* Bookmark icon */}
+                      {!isWeb &&
                       <Box
                         position="absolute"
                         top={12}
@@ -423,10 +440,20 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
                           strokeWidth={2.2}
                         />
                       </Box>
+                      }
                     </Box>
 
                     {/* Event Info */}
-                    <VStack pt="$3" pb="$1.5" space="xs">
+                     <VStack p="$3" space="xs">
+                      <Text
+                        fontSize="$xs"
+                        fontWeight="$semibold"
+                        color={theme.goldAccent}
+                        letterSpacing={0.5}
+                      >
+                        {event.date} {event.time ? `\u2022 ${event.time}` : ""}
+                      </Text>
+
                       <Text
                         fontSize="$md"
                         fontWeight="$bold"
@@ -438,29 +465,25 @@ export const AllEvents = forwardRef<AllEventsHandle, AllEventsProps>(
 
                       <Text
                         fontSize="$xs"
+                        numberOfLines={1}
                         color={theme.subText}
                       >
-                        {event.date}
-                        {event.time ? `, ${event.time}` : ""}
+                        {event.venue}
                       </Text>
 
-                      <HStack alignItems="center" space="xs">
-                        <MapPin size={12} color={theme.subText} />
-                        <Text
-                          fontSize="$xs"
-                          numberOfLines={1}
-                          color={theme.subText}
-                          flex={1}
-                        >
-                          {event.venue}
-                        </Text>
-                      </HStack>
+                      <Text
+                        fontSize="$xs"
+                        fontWeight="$semibold"
+                        color={theme.subText}
+                      >
+                        {event.price}
+                      </Text>
                     </VStack>
                   </VStack>
                 </Pressable>
               </Box>
             ))}
-          </Box>
+          </HStack>
 
           {/* Loading more indicator */}
           {isLoadingMore && (

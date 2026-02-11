@@ -13,9 +13,9 @@ export type { ArtistDetail } from "../types";
 // pointing to the Next.js dev server.
 const API_BASE = Platform.select({
   web: "",
-  ios: "http://localhost:3002",
-  android: "http://10.0.2.2:3002",
-  default: "http://localhost:3002",
+  ios: "http://localhost:3000",
+  android: "http://10.0.2.2:3000",
+  default: "http://localhost:3000",
 });
 
 const EVENTS_API_URL = `${API_BASE}/api/events`;

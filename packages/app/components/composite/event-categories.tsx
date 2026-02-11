@@ -84,7 +84,7 @@ export const EventCategories = ({
   const theme = {
     cardBg: useDarkTheme ? "#050816" : "#fffcf7",
     cardGradientStart: useDarkTheme ? "#1f2933" : "#fff7ed",
-    cardGradientEnd: useDarkTheme ? "#4b5563" : "#fed7aa",
+    cardGradientEnd: useDarkTheme ? "#4b5563" : "#ddd758",
     text: useDarkTheme ? "$textDark50" : "#6b5744",
     iconColor: useDarkTheme ? "#fbbf24" : "#c9a870",
     borderColor: useDarkTheme ? "$borderDark700" : "#e8dcc8",

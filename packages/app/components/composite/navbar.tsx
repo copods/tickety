@@ -94,7 +94,7 @@ export function Navbar() {
                     >
                         {/* Logo */}
                         <VStack mr="$2">
-                            <Text fontWeight="$extrabold" fontSize="$3xl" color="#f97316" lineHeight="$xs">
+                            <Text fontWeight="$extrabold" fontSize="$3xl"  lineHeight="$xs">
                                 Tickety
                             </Text>
                         </VStack>
