@@ -11,11 +11,15 @@ export type { ArtistDetail } from "../types";
 
 // On web (Next.js), relative URLs work. On native, we need the full URL
 // pointing to the Next.js dev server.
+// Note: On native emulators/simulators:
+// - iOS Simulator: Use 127.0.0.1
+// - Android Emulator: Use 10.0.2.2
+// If using a physical device, you must use your computer's local IP address.
 const API_BASE = Platform.select({
-  web: "",
-  ios: "http://localhost:3000",
+  web: "http://localhost:3000",
+  ios: "http://127.0.0.1:3000",
   android: "http://10.0.2.2:3000",
-  default: "http://localhost:3000",
+  default: "http://127.0.0.1:3000",
 });
 
 const EVENTS_API_URL = `${API_BASE}/api/events`;

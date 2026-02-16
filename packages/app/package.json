@@ -2,18 +2,14 @@
   "version": "0.0.0",
   "name": "@tickety/app",
   "main": "index.ts",
-  "exports": {
-    "./provider": "./provider/index.tsx",
-    "./components": "./components/index.ts",
-    "./features": "./features/index.ts",
-    "./layouts": "./layouts/index.ts"
-  },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.2",
-    "lucide-react-native": "^0.291.0",
-    "moti": "latest",
-    "react-hook-form": "^7.47.0",
-    "solito": "4.0.1"
+    "@gorhom/bottom-sheet": "^5.0.0",
+    "@hookform/resolvers": "^4.0.0",
+    "expo-av": "~16.0.0",
+    "lucide-react-native": "^0.474.0",
+    "moti": "^0.30.0",
+    "react-hook-form": "^7.54.0",
+    "solito": "^5.0.0"
   },
   "sideEffects": false
 }

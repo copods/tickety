@@ -91,6 +91,8 @@ export interface EventCategoriesProps {
 export interface AllEventsProps {
   genres: string[];
   onEventPress?: (event: CarouselEvent) => void;
+  hideHeader?: boolean;
+  hideFilters?: boolean;
 }
 
 // Exposed imperative handle for native infinite scrolling
